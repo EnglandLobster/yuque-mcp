@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_context7-plugin_context7__resolve-library-id",
+      "mcp__tavily-search__tavily_search",
+      "mcp__plugin_context7-plugin_context7__query-docs",
+      "Bash(uv pip install:*)",
+      "Bash(uv venv:*)",
+      "Bash(/Users/hongen/yuque-mcp/.venv/bin/python:*)",
+      "mcp__yuque__get_current_user",
+      "mcp__yuque__list_repositories",
+      "mcp__yuque__list_documents",
+      "mcp__yuque__get_document",
+      "mcp__yuque__create_document",
+      "mcp__yuque__get_toc",
+      "mcp__yuque__get_my_repositories",
+      "mcp__yuque__get_repository_overview",
+      "mcp__yuque__search_and_read"
+    ]
+  }
+}
