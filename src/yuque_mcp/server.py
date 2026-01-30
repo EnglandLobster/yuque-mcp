@@ -130,11 +130,7 @@ def format_toc(toc_items: list[Any]) -> str:
 
 @mcp.tool()
 async def get_current_user() -> str:
-    """Get current authenticated user information.
-
-    Returns:
-        User profile with statistics including name, ID, and counts.
-    """
+    """Get authenticated user profile with stats (name, ID, repos count, followers)."""
     try:
         client = get_client()
         user = await client.get_current_user()
@@ -154,18 +150,7 @@ async def get_my_repositories(
     offset: int = 0,
     limit: int = 20,
 ) -> str:
-    """Get current user's knowledge bases (repositories).
-
-    This combines user info and repository listing in one call.
-
-    Args:
-        repo_type: Filter by type: 'Book' or 'Design' (optional).
-        offset: Pagination offset (default: 0).
-        limit: Items per page, max 100 (default: 20).
-
-    Returns:
-        User info and list of repositories with names, IDs, and document counts.
-    """
+    """List user's repos with user info. repo_type: Book|Design, limit: max 100."""
     try:
         client = get_client()
         user, repos, meta = await client.get_my_repositories(repo_type, offset, limit)
@@ -190,17 +175,7 @@ async def get_my_repositories(
 
 @mcp.tool()
 async def get_repository_overview(repo_id: str) -> str:
-    """Get repository details and its table of contents structure.
-
-    This combines repository info and TOC in one call, providing a complete
-    overview of the knowledge base.
-
-    Args:
-        repo_id: Repository ID or namespace (e.g., 'user/repo').
-
-    Returns:
-        Repository information and hierarchical TOC structure.
-    """
+    """Get repo details + full TOC structure. repo_id: ID (int) or namespace 'user/repo'."""
     try:
         client = get_client()
         repo, toc_items = await client.get_repository_overview(repo_id)
@@ -222,18 +197,7 @@ async def create_repository(
     description: Optional[str] = None,
     public: int = 0,
 ) -> str:
-    """Create a new knowledge base (repository).
-
-    Args:
-        login: User or group login/ID.
-        name: Repository display name.
-        slug: URL path identifier (alphanumeric and hyphens).
-        description: Repository description (optional).
-        public: Visibility: 0=private, 1=public, 2=internal (default: 0).
-
-    Returns:
-        Created repository details including ID and namespace.
-    """
+    """Create repo under user/group. slug: URL path (alphanumeric/-). public: 0=private,1=public,2=internal."""
     try:
         client = get_client()
         data = RepositoryCreate(
@@ -265,16 +229,7 @@ async def list_documents(
     offset: int = 0,
     limit: int = 20,
 ) -> str:
-    """List all documents in a repository.
-
-    Args:
-        repo_id: Repository ID or namespace.
-        offset: Pagination offset (default: 0).
-        limit: Items per page, max 100 (default: 20).
-
-    Returns:
-        List of documents with titles, IDs, and metadata.
-    """
+    """List docs in repo with title, ID, slug, word count. limit: max 100."""
     try:
         client = get_client()
         docs, meta = await client.list_documents(repo_id, offset, limit)
@@ -297,15 +252,7 @@ async def list_documents(
 
 @mcp.tool()
 async def get_document(repo_id: str, doc_id: str) -> str:
-    """Retrieve a document's content and metadata.
-
-    Args:
-        repo_id: Repository ID or namespace.
-        doc_id: Document ID or slug.
-
-    Returns:
-        Document content in markdown format with metadata.
-    """
+    """Read document content + metadata. doc_id: ID (int) or slug string."""
     try:
         client = get_client()
         doc = await client.get_document(repo_id, doc_id)
@@ -324,23 +271,7 @@ async def create_document_with_toc(
     public: int = 0,
     parent_uuid: Optional[str] = None,
 ) -> str:
-    """Create a new document and automatically add it to the table of contents.
-
-    This is the recommended way to create documents as it ensures they are
-    visible in the repository's navigation.
-
-    Args:
-        repo_id: Repository ID or namespace.
-        title: Document title.
-        body: Document content.
-        format: Content format: 'markdown', 'html', or 'lake' (default: 'markdown').
-        slug: Custom URL path (optional).
-        public: Visibility: 0=private, 1=public, 2=internal (default: 0).
-        parent_uuid: Parent folder UUID in TOC (optional, adds to root if not specified).
-
-    Returns:
-        Created document details with TOC update confirmation.
-    """
+    """Create doc and auto-add to TOC. format: markdown|html|lake. parent_uuid: folder UUID or None for root."""
     try:
         client = get_client()
 
@@ -377,19 +308,7 @@ async def update_document(
     format: Optional[str] = None,
     public: Optional[int] = None,
 ) -> str:
-    """Update an existing document.
-
-    Args:
-        repo_id: Repository ID or namespace.
-        doc_id: Document ID or slug.
-        title: New title (optional).
-        body: New content (optional).
-        format: New content format (optional).
-        public: New visibility setting (optional).
-
-    Returns:
-        Updated document confirmation.
-    """
+    """Update doc fields (only provided params are changed). format: markdown|html|lake."""
     try:
         client = get_client()
         data = DocumentUpdate(
@@ -412,17 +331,7 @@ async def update_document(
 
 @mcp.tool()
 async def delete_document(repo_id: str, doc_id: str) -> str:
-    """Delete a document.
-
-    Warning: This action is irreversible.
-
-    Args:
-        repo_id: Repository ID or namespace.
-        doc_id: Document ID or slug.
-
-    Returns:
-        Deletion confirmation.
-    """
+    """Delete document permanently (irreversible)."""
     try:
         client = get_client()
         doc = await client.delete_document(repo_id, doc_id)
@@ -453,41 +362,7 @@ async def update_toc(
     open_window: Optional[int] = None,
     visible: Optional[int] = None,
 ) -> str:
-    """Update repository table of contents (add/move/remove documents).
-
-    Args:
-        repo_id: Repository ID or namespace.
-        action: Action type: 'appendNode', 'prependNode', 'editNode', 'removeNode'.
-        action_mode: Position mode: 'sibling' or 'child'.
-        doc_ids: Comma-separated document IDs to add (for appendNode/prependNode).
-        target_uuid: Target node UUID for positioning (optional).
-        node_uuid: Node UUID to operate on (for editNode/removeNode).
-        node_type: Node type: 'DOC', 'LINK', 'TITLE' (optional).
-        title: Node title for TITLE type nodes (optional).
-        url: Link URL for LINK type nodes (optional).
-        open_window: Open in new window: 0=same page, 1=new window (optional).
-        visible: Visibility: 0=hidden, 1=visible (optional).
-
-    Returns:
-        TOC update confirmation.
-
-    Examples:
-        Add document to root:
-            update_toc(repo_id='123', action='appendNode', action_mode='child',
-                      doc_ids='456', node_type='DOC')
-
-        Add document under a folder:
-            update_toc(repo_id='123', action='appendNode', action_mode='child',
-                      doc_ids='456', target_uuid='folder-uuid', node_type='DOC')
-
-        Create a folder:
-            update_toc(repo_id='123', action='appendNode', action_mode='child',
-                      node_type='TITLE', title='New Folder')
-
-        Create external link:
-            update_toc(repo_id='123', action='appendNode', action_mode='child',
-                      node_type='LINK', title='Google', url='https://google.com', open_window=1)
-    """
+    """Modify TOC structure. action: appendNode|prependNode|editNode|removeNode. mode: child|sibling. node_type: DOC|LINK|TITLE."""
     try:
         client = get_client()
 
@@ -530,19 +405,7 @@ async def search_and_read(
     repo_id: str,
     read_first: bool = True,
 ) -> str:
-    """Search for documents and optionally read the first result.
-
-    This combines search and document retrieval in one call. When you search,
-    you usually want to read the content of the top result.
-
-    Args:
-        query: Search keywords (max 200 characters).
-        repo_id: Repository ID or namespace to search within.
-        read_first: Whether to read the first matching document (default: True).
-
-    Returns:
-        Search results and optionally the content of the first matched document.
-    """
+    """Search docs in repo and optionally fetch first result's full content. query: max 200 chars."""
     try:
         client = get_client()
         results, first_doc, meta = await client.search_and_read(
