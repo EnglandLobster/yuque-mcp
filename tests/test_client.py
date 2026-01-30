@@ -1,17 +1,17 @@
 """Tests for the Yuque API client."""
 
+from unittest.mock import AsyncMock, patch
+
 import pytest
-from unittest.mock import AsyncMock, patch, MagicMock
 
 from yuque_mcp.client import YuqueClient
 from yuque_mcp.models import (
-    YuqueConfig,
-    YuqueAPIError,
-    User,
-    Repository,
     Document,
     DocumentCreate,
-    RepositoryCreate,
+    Repository,
+    User,
+    YuqueAPIError,
+    YuqueConfig,
 )
 
 

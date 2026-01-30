@@ -12,7 +12,7 @@ Tool Count: 11 tools (optimized from 15)
 from __future__ import annotations
 
 import logging
-from typing import Any, Optional
+from typing import Any
 
 from fastmcp import FastMCP
 
@@ -33,7 +33,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Global client instance (lazy initialization)
-_client: Optional[YuqueClient] = None
+_client: YuqueClient | None = None
 
 
 def get_client() -> YuqueClient:
@@ -146,7 +146,7 @@ async def get_current_user() -> str:
 
 @mcp.tool()
 async def get_my_repositories(
-    repo_type: Optional[str] = None,
+    repo_type: str | None = None,
     offset: int = 0,
     limit: int = 20,
 ) -> str:
@@ -194,7 +194,7 @@ async def create_repository(
     login: str,
     name: str,
     slug: str,
-    description: Optional[str] = None,
+    description: str | None = None,
     public: int = 0,
 ) -> str:
     """Create repo under user/group. slug: URL path (alphanumeric/-). public: 0=private,1=public,2=internal."""
@@ -267,9 +267,9 @@ async def create_document_with_toc(
     title: str,
     body: str,
     format: str = "markdown",
-    slug: Optional[str] = None,
+    slug: str | None = None,
     public: int = 0,
-    parent_uuid: Optional[str] = None,
+    parent_uuid: str | None = None,
 ) -> str:
     """Create doc and auto-add to TOC. format: markdown|html|lake. parent_uuid: folder UUID or None for root."""
     try:
@@ -303,10 +303,10 @@ async def create_document_with_toc(
 async def update_document(
     repo_id: str,
     doc_id: str,
-    title: Optional[str] = None,
-    body: Optional[str] = None,
-    format: Optional[str] = None,
-    public: Optional[int] = None,
+    title: str | None = None,
+    body: str | None = None,
+    format: str | None = None,
+    public: int | None = None,
 ) -> str:
     """Update doc fields (only provided params are changed). format: markdown|html|lake."""
     try:
@@ -353,14 +353,14 @@ async def update_toc(
     repo_id: str,
     action: str,
     action_mode: str,
-    doc_ids: Optional[str] = None,
-    target_uuid: Optional[str] = None,
-    node_uuid: Optional[str] = None,
-    node_type: Optional[str] = None,
-    title: Optional[str] = None,
-    url: Optional[str] = None,
-    open_window: Optional[int] = None,
-    visible: Optional[int] = None,
+    doc_ids: str | None = None,
+    target_uuid: str | None = None,
+    node_uuid: str | None = None,
+    node_type: str | None = None,
+    title: str | None = None,
+    url: str | None = None,
+    open_window: int | None = None,
+    visible: int | None = None,
 ) -> str:
     """Modify TOC structure. action: appendNode|prependNode|editNode|removeNode. mode: child|sibling. node_type: DOC|LINK|TITLE."""
     try:

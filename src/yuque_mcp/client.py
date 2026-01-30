@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import logging
 from types import TracebackType
-from typing import Any, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -75,7 +75,7 @@ class YuqueClient:
         """
         self.config = config
         self.base_url = config.base_url
-        self._client: Optional[httpx.AsyncClient] = None
+        self._client: httpx.AsyncClient | None = None
         logger.debug("YuqueClient initialized with base_url=%s", self.base_url)
 
     @property
@@ -105,15 +105,15 @@ class YuqueClient:
             logger.debug("Closed httpx.AsyncClient")
         self._client = None
 
-    async def __aenter__(self) -> "YuqueClient":
+    async def __aenter__(self) -> YuqueClient:
         """Enter async context manager."""
         return self
 
     async def __aexit__(
         self,
-        exc_type: Optional[type[BaseException]],
-        exc_val: Optional[BaseException],
-        exc_tb: Optional[TracebackType],
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
+        exc_tb: TracebackType | None,
     ) -> None:
         """Exit async context manager and close resources."""
         await self.close()
@@ -150,8 +150,8 @@ class YuqueClient:
         self,
         method: str,
         path: str,
-        params: Optional[dict[str, Any]] = None,
-        json: Optional[dict[str, Any]] = None,
+        params: dict[str, Any] | None = None,
+        json: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
         """Make an HTTP request to the Yuque API.
 
@@ -184,7 +184,7 @@ class YuqueClient:
 
         except httpx.HTTPError as e:
             logger.exception("HTTP request failed: %s", str(e))
-            raise YuqueAPIError(500, f"HTTP request failed: {str(e)}")
+            raise YuqueAPIError(500, f"HTTP request failed: {str(e)}") from e
 
     # =========================================================================
     # User Operations
@@ -209,7 +209,7 @@ class YuqueClient:
     async def list_repositories(
         self,
         login: str,
-        repo_type: Optional[str] = None,
+        repo_type: str | None = None,
         offset: int = 0,
         limit: int = 20,
     ) -> tuple[list[Repository], dict[str, Any]]:
@@ -239,7 +239,7 @@ class YuqueClient:
         meta = result.get("meta", {})
         return repos, meta
 
-    async def get_repository(self, repo_id: Union[int, str]) -> Repository:
+    async def get_repository(self, repo_id: int | str) -> Repository:
         """Get repository details.
 
         Args:
@@ -280,7 +280,7 @@ class YuqueClient:
 
     async def update_repository(
         self,
-        repo_id: Union[int, str],
+        repo_id: int | str,
         data: RepositoryUpdate,
     ) -> Repository:
         """Update a repository.
@@ -302,7 +302,7 @@ class YuqueClient:
         )
         return Repository(**result.get("data", {}))
 
-    async def delete_repository(self, repo_id: Union[int, str]) -> Repository:
+    async def delete_repository(self, repo_id: int | str) -> Repository:
         """Delete a repository.
 
         Args:
@@ -323,7 +323,7 @@ class YuqueClient:
 
     async def list_documents(
         self,
-        repo_id: Union[int, str],
+        repo_id: int | str,
         offset: int = 0,
         limit: int = 20,
     ) -> tuple[list[Document], dict[str, Any]]:
@@ -352,8 +352,8 @@ class YuqueClient:
 
     async def get_document(
         self,
-        repo_id: Union[int, str],
-        doc_id: Union[int, str],
+        repo_id: int | str,
+        doc_id: int | str,
     ) -> Document:
         """Get document details and content.
 
@@ -374,7 +374,7 @@ class YuqueClient:
 
     async def create_document(
         self,
-        repo_id: Union[int, str],
+        repo_id: int | str,
         data: DocumentCreate,
     ) -> Document:
         """Create a new document.
@@ -401,8 +401,8 @@ class YuqueClient:
 
     async def update_document(
         self,
-        repo_id: Union[int, str],
-        doc_id: Union[int, str],
+        repo_id: int | str,
+        doc_id: int | str,
         data: DocumentUpdate,
     ) -> Document:
         """Update a document.
@@ -427,8 +427,8 @@ class YuqueClient:
 
     async def delete_document(
         self,
-        repo_id: Union[int, str],
-        doc_id: Union[int, str],
+        repo_id: int | str,
+        doc_id: int | str,
     ) -> Document:
         """Delete a document.
 
@@ -451,7 +451,7 @@ class YuqueClient:
     # TOC Operations
     # =========================================================================
 
-    async def get_toc(self, repo_id: Union[int, str]) -> list[TocNode]:
+    async def get_toc(self, repo_id: int | str) -> list[TocNode]:
         """Get repository table of contents.
 
         Args:
@@ -468,17 +468,17 @@ class YuqueClient:
 
     async def update_toc(
         self,
-        repo_id: Union[int, str],
+        repo_id: int | str,
         action: str,
         action_mode: str,
-        doc_ids: Optional[list[int]] = None,
-        target_uuid: Optional[str] = None,
-        node_uuid: Optional[str] = None,
-        node_type: Optional[str] = None,
-        title: Optional[str] = None,
-        url: Optional[str] = None,
-        open_window: Optional[int] = None,
-        visible: Optional[int] = None,
+        doc_ids: list[int] | None = None,
+        target_uuid: str | None = None,
+        node_uuid: str | None = None,
+        node_type: str | None = None,
+        title: str | None = None,
+        url: str | None = None,
+        open_window: int | None = None,
+        visible: int | None = None,
     ) -> dict[str, Any]:
         """Update repository table of contents.
 
@@ -527,9 +527,9 @@ class YuqueClient:
 
     async def add_document_to_toc(
         self,
-        repo_id: Union[int, str],
+        repo_id: int | str,
         doc_id: int,
-        parent_uuid: Optional[str] = None,
+        parent_uuid: str | None = None,
     ) -> dict[str, Any]:
         """Convenience method to add a document to the TOC.
 
@@ -559,7 +559,7 @@ class YuqueClient:
 
     async def get_my_repositories(
         self,
-        repo_type: Optional[str] = None,
+        repo_type: str | None = None,
         offset: int = 0,
         limit: int = 20,
     ) -> tuple[User, list[Repository], dict[str, Any]]:
@@ -585,7 +585,7 @@ class YuqueClient:
 
     async def get_repository_overview(
         self,
-        repo_id: Union[int, str],
+        repo_id: int | str,
     ) -> tuple[Repository, list[TocNode]]:
         """Get repository details and its table of contents in one call.
 
@@ -608,9 +608,9 @@ class YuqueClient:
     async def search_and_read(
         self,
         query: str,
-        repo_id: Union[int, str],
+        repo_id: int | str,
         read_first: bool = True,
-    ) -> tuple[list[SearchResult], Optional[Document], dict[str, Any]]:
+    ) -> tuple[list[SearchResult], Document | None, dict[str, Any]]:
         """Search for documents and optionally read the first result.
 
         This method combines search and get_document to provide search
@@ -656,7 +656,7 @@ class YuqueClient:
         self,
         query: str,
         search_type: str,
-        scope: Optional[str] = None,
+        scope: str | None = None,
         page: int = 1,
     ) -> tuple[list[SearchResult], dict[str, Any]]:
         """Search for documents or repositories.
