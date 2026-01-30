@@ -1,7 +1,6 @@
 """Test fixtures and configuration for pytest."""
 
 import pytest
-from unittest.mock import AsyncMock, MagicMock
 
 from yuque_mcp.models import YuqueConfig
 

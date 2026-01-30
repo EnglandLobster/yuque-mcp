@@ -4,9 +4,11 @@ This module provides type-safe data models for all Yuque API entities,
 ensuring proper validation and serialization of API responses.
 """
 
+from __future__ import annotations
+
 from datetime import datetime
 from enum import Enum
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import BaseModel, Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -65,7 +67,7 @@ class YuqueAPIError(Exception):
         self,
         status_code: int,
         message: str,
-        details: Optional[dict[str, Any]] = None,
+        details: dict[str, Any] | None = None,
     ) -> None:
         self.status_code = status_code
         self.message = message
@@ -157,16 +159,16 @@ class User(YuqueBaseModel):
     id: int = Field(..., description="User ID")
     login: str = Field(..., description="User login name (username)")
     name: str = Field(..., description="User display name")
-    avatar_url: Optional[str] = Field(None, description="User avatar URL")
-    description: Optional[str] = Field(None, description="User bio/description")
-    books_count: Optional[int] = Field(None, description="Total knowledge bases count")
-    public_books_count: Optional[int] = Field(
+    avatar_url: str | None = Field(None, description="User avatar URL")
+    description: str | None = Field(None, description="User bio/description")
+    books_count: int | None = Field(None, description="Total knowledge bases count")
+    public_books_count: int | None = Field(
         None, description="Public knowledge bases count"
     )
-    followers_count: Optional[int] = Field(None, description="Followers count")
-    following_count: Optional[int] = Field(None, description="Following count")
-    created_at: Optional[datetime] = Field(None, description="Account creation time")
-    updated_at: Optional[datetime] = Field(None, description="Last update time")
+    followers_count: int | None = Field(None, description="Followers count")
+    following_count: int | None = Field(None, description="Following count")
+    created_at: datetime | None = Field(None, description="Account creation time")
+    updated_at: datetime | None = Field(None, description="Last update time")
 
 
 # =============================================================================
@@ -185,14 +187,14 @@ class Repository(YuqueBaseModel):
     slug: str = Field(..., description="Repository slug for URL")
     name: str = Field(..., description="Repository name")
     user_id: int = Field(..., description="Owner user ID")
-    description: Optional[str] = Field(None, description="Repository description")
+    description: str | None = Field(None, description="Repository description")
     public: int = Field(default=0, description="Visibility level (0=private)")
-    items_count: Optional[int] = Field(None, description="Document count")
-    namespace: Optional[str] = Field(
+    items_count: int | None = Field(None, description="Document count")
+    namespace: str | None = Field(
         None, description="Full namespace (user/repo)"
     )
-    created_at: Optional[datetime] = Field(None, description="Creation time")
-    updated_at: Optional[datetime] = Field(None, description="Last update time")
+    created_at: datetime | None = Field(None, description="Creation time")
+    updated_at: datetime | None = Field(None, description="Last update time")
 
 
 class RepositoryCreate(YuqueBaseModel):
@@ -200,9 +202,9 @@ class RepositoryCreate(YuqueBaseModel):
 
     name: str = Field(..., description="Repository name")
     slug: str = Field(..., description="Repository slug for URL")
-    description: Optional[str] = Field(None, description="Repository description")
+    description: str | None = Field(None, description="Repository description")
     public: int = Field(default=0, description="Visibility level")
-    enhancedPrivacy: Optional[bool] = Field(
+    enhancedPrivacy: bool | None = Field(
         None, description="Enhanced privacy - excludes team members except admins"
     )
 
@@ -210,10 +212,10 @@ class RepositoryCreate(YuqueBaseModel):
 class RepositoryUpdate(YuqueBaseModel):
     """Model for updating a repository."""
 
-    name: Optional[str] = Field(None, description="New repository name")
-    slug: Optional[str] = Field(None, description="New repository slug")
-    description: Optional[str] = Field(None, description="New description")
-    public: Optional[int] = Field(None, description="New visibility level")
+    name: str | None = Field(None, description="New repository name")
+    slug: str | None = Field(None, description="New repository slug")
+    description: str | None = Field(None, description="New description")
+    public: int | None = Field(None, description="New visibility level")
 
 
 # =============================================================================
@@ -232,18 +234,18 @@ class Document(YuqueBaseModel):
     title: str = Field(..., description="Document title")
     book_id: int = Field(..., description="Parent repository ID")
     user_id: int = Field(..., description="Author user ID")
-    format: Optional[str] = Field(None, description="Content format")
-    body: Optional[str] = Field(None, description="Document content (raw)")
-    body_draft: Optional[str] = Field(None, description="Draft content")
-    body_html: Optional[str] = Field(None, description="HTML rendered content")
-    body_lake: Optional[str] = Field(None, description="Lake format content")
+    format: str | None = Field(None, description="Content format")
+    body: str | None = Field(None, description="Document content (raw)")
+    body_draft: str | None = Field(None, description="Draft content")
+    body_html: str | None = Field(None, description="HTML rendered content")
+    body_lake: str | None = Field(None, description="Lake format content")
     public: int = Field(default=0, description="Visibility level")
-    status: Optional[int] = Field(None, description="Document status")
-    word_count: Optional[int] = Field(None, description="Word count")
-    cover: Optional[str] = Field(None, description="Cover image URL")
-    description: Optional[str] = Field(None, description="Document description")
-    created_at: Optional[datetime] = Field(None, description="Creation time")
-    updated_at: Optional[datetime] = Field(None, description="Last update time")
+    status: int | None = Field(None, description="Document status")
+    word_count: int | None = Field(None, description="Word count")
+    cover: str | None = Field(None, description="Cover image URL")
+    description: str | None = Field(None, description="Document description")
+    created_at: datetime | None = Field(None, description="Creation time")
+    updated_at: datetime | None = Field(None, description="Last update time")
 
 
 class DocumentCreate(YuqueBaseModel):
@@ -252,17 +254,17 @@ class DocumentCreate(YuqueBaseModel):
     title: str = Field(..., description="Document title")
     body: str = Field(..., description="Document content")
     format: str = Field(default="markdown", description="Content format")
-    slug: Optional[str] = Field(None, description="Custom slug for URL")
+    slug: str | None = Field(None, description="Custom slug for URL")
     public: int = Field(default=0, description="Visibility level")
 
 
 class DocumentUpdate(YuqueBaseModel):
     """Model for updating a document."""
 
-    title: Optional[str] = Field(None, description="New title")
-    body: Optional[str] = Field(None, description="New content")
-    format: Optional[str] = Field(None, description="New format")
-    public: Optional[int] = Field(None, description="New visibility level")
+    title: str | None = Field(None, description="New title")
+    body: str | None = Field(None, description="New content")
+    format: str | None = Field(None, description="New format")
+    public: int | None = Field(None, description="New visibility level")
 
 
 # =============================================================================
@@ -279,22 +281,22 @@ class TocNode(YuqueBaseModel):
     uuid: str = Field(..., description="Node unique identifier")
     type: str = Field(..., description="Node type (DOC, LINK, TITLE)")
     title: str = Field(..., description="Node title")
-    url: Optional[str] = Field(None, description="Link URL (for LINK type)")
-    slug: Optional[str] = Field(None, description="Node URL slug (deprecated)")
-    doc_id: Optional[int] = Field(None, description="Document ID (for DOC type)")
-    id: Optional[int] = Field(None, description="Document ID (deprecated, use doc_id)")
-    level: Optional[int] = Field(None, description="Nesting level (1-based)")
-    depth: Optional[int] = Field(None, description="Nesting level (deprecated, use level)")
+    url: str | None = Field(None, description="Link URL (for LINK type)")
+    slug: str | None = Field(None, description="Node URL slug (deprecated)")
+    doc_id: int | None = Field(None, description="Document ID (for DOC type)")
+    id: int | None = Field(None, description="Document ID (deprecated, use doc_id)")
+    level: int | None = Field(None, description="Nesting level (1-based)")
+    depth: int | None = Field(None, description="Nesting level (deprecated, use level)")
     visible: int = Field(default=1, description="Visibility flag (0=hidden, 1=visible)")
     open_window: int = Field(default=0, description="Open in new window (0=same, 1=new)")
-    parent_uuid: Optional[str] = Field(None, description="Parent node UUID")
-    child_uuid: Optional[str] = Field(None, description="First child node UUID")
-    sibling_uuid: Optional[str] = Field(None, description="Next sibling node UUID")
-    prev_uuid: Optional[str] = Field(None, description="Previous sibling node UUID")
+    parent_uuid: str | None = Field(None, description="Parent node UUID")
+    child_uuid: str | None = Field(None, description="First child node UUID")
+    sibling_uuid: str | None = Field(None, description="Next sibling node UUID")
+    prev_uuid: str | None = Field(None, description="Previous sibling node UUID")
 
     @field_validator("doc_id", mode="before")
     @classmethod
-    def parse_doc_id(cls, v: Any) -> Optional[int]:
+    def parse_doc_id(cls, v: Any) -> int | None:
         """Handle empty string from API as None."""
         if v == "" or v is None:
             return None
@@ -302,7 +304,7 @@ class TocNode(YuqueBaseModel):
 
     @field_validator("id", mode="before")
     @classmethod
-    def parse_id(cls, v: Any) -> Optional[int]:
+    def parse_id(cls, v: Any) -> int | None:
         """Handle empty string from API as None."""
         if v == "" or v is None:
             return None
@@ -314,14 +316,14 @@ class TocUpdateRequest(YuqueBaseModel):
 
     action: TocAction = Field(..., description="Action to perform")
     action_mode: TocActionMode = Field(..., description="Action mode")
-    doc_ids: Optional[list[int]] = Field(None, description="Document IDs to add")
-    target_uuid: Optional[str] = Field(None, description="Target node UUID")
-    node_uuid: Optional[str] = Field(None, description="Node UUID to operate on")
-    type: Optional[TocNodeType] = Field(None, description="Node type")
-    title: Optional[str] = Field(None, description="Node title")
-    url: Optional[str] = Field(None, description="Link URL")
-    open_window: Optional[int] = Field(None, description="Open in new window (0=same, 1=new)")
-    visible: Optional[int] = Field(None, description="Visibility (0=hidden, 1=visible)")
+    doc_ids: list[int] | None = Field(None, description="Document IDs to add")
+    target_uuid: str | None = Field(None, description="Target node UUID")
+    node_uuid: str | None = Field(None, description="Node UUID to operate on")
+    type: TocNodeType | None = Field(None, description="Node type")
+    title: str | None = Field(None, description="Node title")
+    url: str | None = Field(None, description="Link URL")
+    open_window: int | None = Field(None, description="Open in new window (0=same, 1=new)")
+    visible: int | None = Field(None, description="Visibility (0=hidden, 1=visible)")
 
 
 # =============================================================================
@@ -338,10 +340,10 @@ class SearchResult(YuqueBaseModel):
     id: int = Field(..., description="Result item ID")
     type: str = Field(..., description="Result type (doc or repo)")
     title: str = Field(..., description="Result title")
-    summary: Optional[str] = Field(None, description="Result summary/snippet")
+    summary: str | None = Field(None, description="Result summary/snippet")
     url: str = Field(..., description="Result URL")
-    info: Optional[str] = Field(None, description="Additional info")
-    target: Optional[dict[str, Any]] = Field(None, description="Target doc or repo object")
+    info: str | None = Field(None, description="Additional info")
+    target: dict[str, Any] | None = Field(None, description="Target doc or repo object")
 
 
 # =============================================================================
@@ -359,4 +361,4 @@ class PaginatedResponse(YuqueBaseModel):
     """Paginated API response wrapper."""
 
     data: list[Any] = Field(default_factory=list, description="Response data list")
-    meta: Optional[dict[str, Any]] = Field(None, description="Pagination metadata")
+    meta: dict[str, Any] | None = Field(None, description="Pagination metadata")

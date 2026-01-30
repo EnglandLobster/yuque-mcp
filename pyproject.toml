@@ -73,6 +73,8 @@ addopts = "-v --tb=short"
 [tool.ruff]
 target-version = "py310"
 line-length = 88
+
+[tool.ruff.lint]
 select = [
     "E",   # pycodestyle errors
     "W",   # pycodestyle warnings
@@ -86,7 +88,7 @@ ignore = [
     "E501",  # line too long (handled by formatter)
 ]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["yuque_mcp"]
 
 [tool.mypy]
