@@ -4,73 +4,75 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-green.svg)](https://modelcontextprotocol.io)
 
-A Model Context Protocol (MCP) server for seamless integration with [Yuque (语雀)](https://www.yuque.com) - enabling AI assistants like Claude to manage your knowledge base through standardized tools.
+**[English](README_EN.md) | 简体中文**
 
-## Features
+为 [语雀（Yuque）](https://www.yuque.com) 提供的模型上下文协议（MCP）服务器 - 让 Claude 等 AI 助手能够通过标准化工具管理你的语雀知识库。
 
-### Document Management
-- ✅ Create, read, update, and delete documents
-- ✅ Support for multiple formats (Markdown, HTML, Lake)
-- ✅ List documents with pagination
-- ✅ **One-step document creation with TOC** (`create_document_with_toc`)
+## 功能特性
 
-### Repository Management
-- ✅ Get all your knowledge bases in one call (`get_my_repositories`)
-- ✅ View repository with full TOC structure (`get_repository_overview`)
-- ✅ Create new knowledge bases
+### 文档管理
+- ✅ 创建、读取、更新和删除文档
+- ✅ 支持多种格式（Markdown、HTML、Lake）
+- ✅ 分页列出文档
+- ✅ **一步创建文档并添加到目录** (`create_document_with_toc`)
 
-### Table of Contents
-- ✅ Hierarchical TOC view included with repository overview
-- ✅ Add/move/remove documents in TOC
-- ✅ Organize content with folders
+### 知识库管理
+- ✅ 一次调用获取所有知识库 (`get_my_repositories`)
+- ✅ 查看知识库及完整目录结构 (`get_repository_overview`)
+- ✅ 创建新知识库
 
-### Search & Discovery
-- ✅ Search and read documents in one call (`search_and_read`)
-- ✅ Get current user information
+### 目录管理
+- ✅ 知识库概览中包含层级目录视图
+- ✅ 在目录中添加/移动/删除文档
+- ✅ 使用文件夹组织内容
 
-## Installation
+### 搜索与发现
+- ✅ 一次调用搜索并读取文档 (`search_and_read`)
+- ✅ 获取当前用户信息
 
-### Prerequisites
-- Python 3.10 or higher
-- A Yuque account with API token
+## 安装
 
-### Quick Start
+### 前置要求
+- Python 3.10 或更高版本
+- 语雀账号及 API Token
 
-1. **Clone the repository**
+### 快速开始
+
+1. **克隆仓库**
    ```bash
    git clone https://github.com/EnglandLobster/yuque-mcp.git
    cd yuque-mcp
    ```
 
-2. **Install with pip**
+2. **安装依赖**
    ```bash
    pip install -e .
    ```
 
-   Or with uv:
+   或使用 uv：
    ```bash
    uv venv
    uv pip install -e .
    ```
 
-3. **Configure API token**
+3. **配置 API Token**
    ```bash
    cp .env.example .env
    ```
 
-   Get your API token from: https://www.yuque.com/settings/tokens
+   从这里获取你的 API Token：https://www.yuque.com/settings/tokens
 
-   Edit `.env`:
+   编辑 `.env` 文件：
    ```env
-   YUQUE_API_TOKEN=your_token_here
+   YUQUE_API_TOKEN=你的token
    YUQUE_BASE_URL=https://www.yuque.com
    ```
 
-## Usage
+## 使用方法
 
-### With Claude Code CLI
+### 与 Claude Code CLI 集成
 
-Add to `~/.claude.json` or project-level `.mcp.json`:
+添加到 `~/.claude.json` 或项目级别的 `.mcp.json`：
 
 ```json
 {
@@ -80,23 +82,23 @@ Add to `~/.claude.json` or project-level `.mcp.json`:
       "command": "/path/to/yuque-mcp/.venv/bin/python",
       "args": ["-m", "yuque_mcp.server"],
       "env": {
-        "YUQUE_API_TOKEN": "your_token_here"
+        "YUQUE_API_TOKEN": "你的token"
       }
     }
   }
 }
 ```
 
-Or add via CLI:
+或通过 CLI 添加：
 ```bash
 claude mcp add --scope user --transport stdio \
-  --env YUQUE_API_TOKEN=your_token \
+  --env YUQUE_API_TOKEN=你的token \
   yuque -- python -m yuque_mcp.server
 ```
 
-### With Claude Desktop
+### 与 Claude Desktop 集成
 
-Add to Claude Desktop config:
+添加到 Claude Desktop 配置文件：
 
 **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
@@ -108,125 +110,125 @@ Add to Claude Desktop config:
       "command": "python",
       "args": ["-m", "yuque_mcp.server"],
       "env": {
-        "YUQUE_API_TOKEN": "your_token_here"
+        "YUQUE_API_TOKEN": "你的token"
       }
     }
   }
 }
 ```
 
-### Standalone
+### 独立运行
 
 ```bash
-# Using the installed script
+# 使用安装的脚本
 yuque-mcp
 
-# Or run directly
+# 或直接运行
 python -m yuque_mcp.server
 ```
 
-## Available Tools (11 tools)
+## 可用工具（11 个工具）
 
-### Document Operations (5 tools)
+### 文档操作（5 个工具）
 
-| Tool | Description |
-|------|-------------|
-| `create_document_with_toc` | Create document and add to TOC in one step (recommended) |
-| `get_document` | Retrieve document content and metadata |
-| `update_document` | Update document title, content, or settings |
-| `delete_document` | Remove a document |
-| `list_documents` | List all documents with pagination |
+| 工具 | 描述 |
+|------|------|
+| `create_document_with_toc` | 一步创建文档并添加到目录（推荐） |
+| `get_document` | 获取文档内容和元数据 |
+| `update_document` | 更新文档标题、内容或设置 |
+| `delete_document` | 删除文档 |
+| `list_documents` | 分页列出所有文档 |
 
-### Repository Operations (3 tools)
+### 知识库操作（3 个工具）
 
-| Tool | Description |
-|------|-------------|
-| `get_my_repositories` | Get current user info + all repositories in one call |
-| `get_repository_overview` | Get repository details + TOC structure in one call |
-| `create_repository` | Create a new knowledge base |
+| 工具 | 描述 |
+|------|------|
+| `get_my_repositories` | 一次获取当前用户信息和所有知识库 |
+| `get_repository_overview` | 一次获取知识库详情和目录结构 |
+| `create_repository` | 创建新知识库 |
 
-### TOC Management (1 tool)
+### 目录管理（1 个工具）
 
-| Tool | Description |
-|------|-------------|
-| `update_toc` | Add, move, or remove TOC items |
+| 工具 | 描述 |
+|------|------|
+| `update_toc` | 添加、移动或删除目录项 |
 
-### Search & User (2 tools)
+### 搜索与用户（2 个工具）
 
-| Tool | Description |
-|------|-------------|
-| `search_and_read` | Search documents and read the first result in one call |
-| `get_current_user` | Get authenticated user info |
+| 工具 | 描述 |
+|------|------|
+| `search_and_read` | 一次搜索并读取第一个结果 |
+| `get_current_user` | 获取认证用户信息 |
 
-## Common Workflows
+## 常见工作流
 
-### Creating a Document (Recommended)
+### 创建文档（推荐方式）
 
-Use `create_document_with_toc` for one-step creation:
+使用 `create_document_with_toc` 一步完成创建：
 
-```
+```python
 create_document_with_toc(
     repo_id="123",
-    title="Getting Started",
-    body="# Welcome\n\nYour content here...",
-    parent_uuid="folder-uuid"  # optional, adds to root if omitted
+    title="快速开始",
+    body="# 欢迎\n\n你的内容...",
+    parent_uuid="folder-uuid"  # 可选，省略则添加到根目录
 )
 ```
 
-### Creating a Document (Two-step)
+### 创建文档（两步方式）
 
-If you need more control:
+如果需要更多控制：
 
-1. Create the document:
-   ```
-   create_document(repo_id="123", title="My Doc", body="# Content")
+1. 创建文档：
+   ```python
+   create_document(repo_id="123", title="我的文档", body="# 内容")
    ```
 
-2. Add to TOC:
-   ```
+2. 添加到目录：
+   ```python
    update_toc(repo_id="123", action="appendNode", action_mode="child",
               doc_ids="456", node_type="DOC")
    ```
 
-### Browsing Repository Structure
+### 浏览知识库结构
 
-```
+```python
 get_toc(repo_id="123")
 ```
 
-Returns hierarchical structure with folders (📁) and documents (📄).
+返回带有文件夹（📁）和文档（📄）的层级结构。
 
-## Configuration
+## 配置
 
-### Environment Variables
+### 环境变量
 
-| Variable | Required | Default | Description |
-|----------|----------|---------|-------------|
-| `YUQUE_API_TOKEN` | Yes | - | Your Yuque API token |
-| `YUQUE_BASE_URL` | No | `https://www.yuque.com` | Yuque API base URL |
+| 变量 | 必需 | 默认值 | 描述 |
+|------|------|--------|------|
+| `YUQUE_API_TOKEN` | 是 | - | 你的语雀 API Token |
+| `YUQUE_BASE_URL` | 否 | `https://www.yuque.com` | 语雀 API 基础 URL |
 
-### Visibility Levels
+### 可见性级别
 
-| Value | Meaning |
-|-------|---------|
-| `0` | Private (default) |
-| `1` | Public |
-| `2` | Internal (organization only) |
+| 值 | 含义 |
+|----|------|
+| `0` | 私密（默认） |
+| `1` | 公开 |
+| `2` | 内部可见（仅组织成员） |
 
-### Content Formats
+### 内容格式
 
-| Format | Description |
-|--------|-------------|
-| `markdown` | Standard Markdown (default) |
-| `html` | HTML format |
-| `lake` | Yuque's native rich text format |
+| 格式 | 描述 |
+|------|------|
+| `markdown` | 标准 Markdown（默认） |
+| `html` | HTML 格式 |
+| `lake` | 语雀原生富文本格式 |
 
-## Error Handling
+## 错误处理
 
-The server provides bilingual error messages (Chinese + English):
+服务器提供双语错误消息（中文 + 英文）：
 
-| Code | Message |
-|------|---------|
+| 状态码 | 消息 |
+|--------|------|
 | 400 | 请求参数非法 (Invalid request parameters) |
 | 401 | Token/Scope 未通过鉴权 (Authentication failed) |
 | 403 | 无操作权限 (Permission denied) |
@@ -235,80 +237,80 @@ The server provides bilingual error messages (Chinese + English):
 | 429 | 访问频率超限 (Rate limit exceeded) |
 | 500 | 内部错误 (Internal server error) |
 
-## Development
+## 开发
 
-### Setup Development Environment
+### 设置开发环境
 
 ```bash
-# Clone and install with dev dependencies
+# 克隆并安装开发依赖
 git clone https://github.com/EnglandLobster/yuque-mcp.git
 cd yuque-mcp
 pip install -e ".[dev]"
 ```
 
-### Running Tests
+### 运行测试
 
 ```bash
 pytest
-pytest --cov=yuque_mcp  # with coverage
+pytest --cov=yuque_mcp  # 带覆盖率报告
 ```
 
-### Code Quality
+### 代码质量检查
 
 ```bash
-ruff check .           # linting
-ruff format .          # formatting
-mypy src/yuque_mcp     # type checking
+ruff check .           # 代码检查
+ruff format .          # 代码格式化
+mypy src/yuque_mcp     # 类型检查
 ```
 
-### Project Structure
+### 项目结构
 
 ```
 yuque-mcp/
 ├── src/yuque_mcp/
-│   ├── __init__.py    # Package exports
-│   ├── server.py      # FastMCP server with 15 tools
-│   ├── client.py      # Async Yuque API client
-│   └── models.py      # Pydantic models and enums
+│   ├── __init__.py    # 包导出
+│   ├── server.py      # FastMCP 服务器（11 个工具）
+│   ├── client.py      # 异步语雀 API 客户端
+│   └── models.py      # Pydantic 模型和枚举
 ├── tests/
 │   ├── __init__.py
-│   ├── conftest.py    # Pytest fixtures
-│   └── test_client.py # Client tests
+│   ├── conftest.py    # Pytest 固件
+│   └── test_client.py # 客户端测试
 ├── .env.example
 ├── .github/
 │   └── workflows/
 │       └── ci.yml     # GitHub Actions CI
 ├── pyproject.toml
 ├── LICENSE
-├── CLAUDE.md          # Instructions for AI assistants
+├── CLAUDE.md          # AI 助手使用说明
 └── README.md
 ```
 
-## Contributing
+## 贡献
 
-Contributions are welcome! Please follow these steps:
+欢迎贡献！请遵循以下步骤：
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Run tests (`pytest`)
-5. Run linting (`ruff check . && ruff format .`)
-6. Commit your changes (`git commit -m 'Add amazing feature'`)
-7. Push to the branch (`git push origin feature/amazing-feature`)
-8. Open a Pull Request
+1. Fork 本仓库
+2. 创建特性分支 (`git checkout -b feature/amazing-feature`)
+3. 进行修改
+4. 运行测试 (`pytest`)
+5. 运行代码检查 (`ruff check . && ruff format .`)
+6. 提交更改 (`git commit -m 'Add amazing feature'`)
+7. 推送到分支 (`git push origin feature/amazing-feature`)
+8. 开启 Pull Request
 
-## API Reference
+## API 参考
 
-- Yuque API Documentation: https://www.yuque.com/yuque/developer/api
-- MCP Specification: https://modelcontextprotocol.io
-- FastMCP Documentation: https://gofastmcp.com
+- 语雀 API 文档：https://www.yuque.com/yuque/developer/api
+- MCP 规范：https://modelcontextprotocol.io
+- FastMCP 文档：https://gofastmcp.com
 
-## License
+## 许可证
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件。
 
-## Acknowledgments
+## 致谢
 
-- [Yuque (语雀)](https://www.yuque.com) - Knowledge base platform
-- [Anthropic](https://anthropic.com) - Model Context Protocol
-- [FastMCP](https://gofastmcp.com) - High-level MCP Python SDK
+- [语雀（Yuque）](https://www.yuque.com) - 知识库平台
+- [Anthropic](https://anthropic.com) - 模型上下文协议
+- [FastMCP](https://gofastmcp.com) - 高级 MCP Python SDK
