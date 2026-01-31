@@ -15,7 +15,8 @@
       "mcp__yuque__get_toc",
       "mcp__yuque__get_my_repositories",
       "mcp__yuque__get_repository_overview",
-      "mcp__yuque__search_and_read"
+      "mcp__yuque__search_and_read",
+      "Bash(cp:*)"
     ]
   }
 }

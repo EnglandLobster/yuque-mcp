@@ -107,6 +107,8 @@ class YuqueClient:
 
     async def __aenter__(self) -> YuqueClient:
         """Enter async context manager."""
+        # Eagerly initialize the HTTP client
+        _ = self._http_client
         return self
 
     async def __aexit__(

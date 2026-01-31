@@ -1,0 +1,511 @@
+﻿2026-01-30T13:52:13.5076366Z Current runner version: '2.331.0'
+2026-01-30T13:52:13.5111189Z ##[group]Runner Image Provisioner
+2026-01-30T13:52:13.5112536Z Hosted Compute Agent
+2026-01-30T13:52:13.5113605Z Version: 20260123.484
+2026-01-30T13:52:13.5114665Z Commit: 6bd6555ca37d84114959e1c76d2c01448ff61c5d
+2026-01-30T13:52:13.5115920Z Build Date: 2026-01-23T19:41:17Z
+2026-01-30T13:52:13.5117090Z Worker ID: {3b696dcb-8b69-4d4a-8e1d-401965d2ec06}
+2026-01-30T13:52:13.5118228Z Azure Region: eastus2
+2026-01-30T13:52:13.5119178Z ##[endgroup]
+2026-01-30T13:52:13.5121389Z ##[group]Operating System
+2026-01-30T13:52:13.5122314Z Ubuntu
+2026-01-30T13:52:13.5123289Z 24.04.3
+2026-01-30T13:52:13.5124239Z LTS
+2026-01-30T13:52:13.5125073Z ##[endgroup]
+2026-01-30T13:52:13.5125942Z ##[group]Runner Image
+2026-01-30T13:52:13.5126941Z Image: ubuntu-24.04
+2026-01-30T13:52:13.5127772Z Version: 20260126.10.1
+2026-01-30T13:52:13.5129835Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260126.10/images/ubuntu/Ubuntu2404-Readme.md
+2026-01-30T13:52:13.5132385Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260126.10
+2026-01-30T13:52:13.5134227Z ##[endgroup]
+2026-01-30T13:52:13.5135984Z ##[group]GITHUB_TOKEN Permissions
+2026-01-30T13:52:13.5138695Z Contents: read
+2026-01-30T13:52:13.5139501Z Metadata: read
+2026-01-30T13:52:13.5140268Z Packages: read
+2026-01-30T13:52:13.5141161Z ##[endgroup]
+2026-01-30T13:52:13.5144183Z Secret source: Actions
+2026-01-30T13:52:13.5145496Z Prepare workflow directory
+2026-01-30T13:52:13.5602067Z Prepare all required actions
+2026-01-30T13:52:13.5657915Z Getting action download info
+2026-01-30T13:52:13.8862593Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-01-30T13:52:13.9720107Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-01-30T13:52:14.0547530Z Download action repository 'codecov/codecov-action@v4' (SHA:b9fd7d16f6d7d1b5d2bec1a2887e65ceed900238)
+2026-01-30T13:52:14.4676740Z Complete job name: test (3.11)
+2026-01-30T13:52:14.5297017Z ##[group]Run actions/checkout@v4
+2026-01-30T13:52:14.5297842Z with:
+2026-01-30T13:52:14.5298256Z   repository: EnglandLobster/yuque-mcp
+2026-01-30T13:52:14.5298911Z   token: ***
+2026-01-30T13:52:14.5299296Z   ssh-strict: true
+2026-01-30T13:52:14.5299691Z   ssh-user: git
+2026-01-30T13:52:14.5300099Z   persist-credentials: true
+2026-01-30T13:52:14.5300534Z   clean: true
+2026-01-30T13:52:14.5300933Z   sparse-checkout-cone-mode: true
+2026-01-30T13:52:14.5301390Z   fetch-depth: 1
+2026-01-30T13:52:14.5301765Z   fetch-tags: false
+2026-01-30T13:52:14.5302159Z   show-progress: true
+2026-01-30T13:52:14.5302572Z   lfs: false
+2026-01-30T13:52:14.5302928Z   submodules: false
+2026-01-30T13:52:14.5303320Z   set-safe-directory: true
+2026-01-30T13:52:14.5304307Z ##[endgroup]
+2026-01-30T13:52:14.6361364Z Syncing repository: EnglandLobster/yuque-mcp
+2026-01-30T13:52:14.6363267Z ##[group]Getting Git version info
+2026-01-30T13:52:14.6364303Z Working directory is '/home/runner/work/yuque-mcp/yuque-mcp'
+2026-01-30T13:52:14.6365279Z [command]/usr/bin/git version
+2026-01-30T13:52:14.6443312Z git version 2.52.0
+2026-01-30T13:52:14.6469757Z ##[endgroup]
+2026-01-30T13:52:14.6491853Z Temporarily overriding HOME='/home/runner/work/_temp/e19168d4-7a28-41ac-aee4-c2a160279162' before making global git config changes
+2026-01-30T13:52:14.6493205Z Adding repository directory to the temporary git global config as a safe directory
+2026-01-30T13:52:14.6497457Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/yuque-mcp/yuque-mcp
+2026-01-30T13:52:14.6536758Z Deleting the contents of '/home/runner/work/yuque-mcp/yuque-mcp'
+2026-01-30T13:52:14.6540482Z ##[group]Initializing the repository
+2026-01-30T13:52:14.6544479Z [command]/usr/bin/git init /home/runner/work/yuque-mcp/yuque-mcp
+2026-01-30T13:52:14.6653342Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-01-30T13:52:14.6654827Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-01-30T13:52:14.6656006Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-01-30T13:52:14.6656689Z hint: call:
+2026-01-30T13:52:14.6657122Z hint:
+2026-01-30T13:52:14.6658079Z hint: 	git config --global init.defaultBranch <name>
+2026-01-30T13:52:14.6658968Z hint:
+2026-01-30T13:52:14.6659813Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-01-30T13:52:14.6661089Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-01-30T13:52:14.6661770Z hint:
+2026-01-30T13:52:14.6662159Z hint: 	git branch -m <name>
+2026-01-30T13:52:14.6662759Z hint:
+2026-01-30T13:52:14.6663895Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-01-30T13:52:14.6664889Z Initialized empty Git repository in /home/runner/work/yuque-mcp/yuque-mcp/.git/
+2026-01-30T13:52:14.6668962Z [command]/usr/bin/git remote add origin https://github.com/EnglandLobster/yuque-mcp
+2026-01-30T13:52:14.6709188Z ##[endgroup]
+2026-01-30T13:52:14.6709937Z ##[group]Disabling automatic garbage collection
+2026-01-30T13:52:14.6713026Z [command]/usr/bin/git config --local gc.auto 0
+2026-01-30T13:52:14.6740167Z ##[endgroup]
+2026-01-30T13:52:14.6740840Z ##[group]Setting up auth
+2026-01-30T13:52:14.6746956Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-01-30T13:52:14.6775311Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-01-30T13:52:14.7096377Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-01-30T13:52:14.7124021Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-01-30T13:52:14.7340946Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-01-30T13:52:14.7380321Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-01-30T13:52:14.7607891Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-01-30T13:52:14.7642039Z ##[endgroup]
+2026-01-30T13:52:14.7643257Z ##[group]Fetching the repository
+2026-01-30T13:52:14.7652000Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +6970d15f71b58e80de0865ea4835baef0beb61c4:refs/remotes/origin/main
+2026-01-30T13:52:14.9284964Z From https://github.com/EnglandLobster/yuque-mcp
+2026-01-30T13:52:14.9286540Z  * [new ref]         6970d15f71b58e80de0865ea4835baef0beb61c4 -> origin/main
+2026-01-30T13:52:14.9320768Z ##[endgroup]
+2026-01-30T13:52:14.9322086Z ##[group]Determining the checkout info
+2026-01-30T13:52:14.9323931Z ##[endgroup]
+2026-01-30T13:52:14.9328834Z [command]/usr/bin/git sparse-checkout disable
+2026-01-30T13:52:14.9371490Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-01-30T13:52:14.9399425Z ##[group]Checking out the ref
+2026-01-30T13:52:14.9404085Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-01-30T13:52:14.9469524Z Switched to a new branch 'main'
+2026-01-30T13:52:14.9472343Z branch 'main' set up to track 'origin/main'.
+2026-01-30T13:52:14.9480227Z ##[endgroup]
+2026-01-30T13:52:14.9515269Z [command]/usr/bin/git log -1 --format=%H
+2026-01-30T13:52:14.9536964Z 6970d15f71b58e80de0865ea4835baef0beb61c4
+2026-01-30T13:52:14.9829370Z ##[group]Run actions/setup-python@v5
+2026-01-30T13:52:14.9830153Z with:
+2026-01-30T13:52:14.9830591Z   python-version: 3.11
+2026-01-30T13:52:14.9831131Z   check-latest: false
+2026-01-30T13:52:14.9831914Z   token: ***
+2026-01-30T13:52:14.9832386Z   update-environment: true
+2026-01-30T13:52:14.9833024Z   allow-prereleases: false
+2026-01-30T13:52:14.9833786Z   freethreaded: false
+2026-01-30T13:52:14.9834519Z ##[endgroup]
+2026-01-30T13:52:15.1520539Z ##[group]Installed versions
+2026-01-30T13:52:15.1614624Z Successfully set up CPython (3.11.14)
+2026-01-30T13:52:15.1616157Z ##[endgroup]
+2026-01-30T13:52:15.1753821Z ##[group]Run python -m pip install --upgrade pip
+2026-01-30T13:52:15.1755068Z [36;1mpython -m pip install --upgrade pip[0m
+2026-01-30T13:52:15.1756045Z [36;1mpip install -e ".[dev]"[0m
+2026-01-30T13:52:15.1807926Z shell: /usr/bin/bash -e {0}
+2026-01-30T13:52:15.1808676Z env:
+2026-01-30T13:52:15.1809407Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.14/x64
+2026-01-30T13:52:15.1810887Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.14/x64/lib/pkgconfig
+2026-01-30T13:52:15.1812338Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.14/x64
+2026-01-30T13:52:15.1813827Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.14/x64
+2026-01-30T13:52:15.1815151Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.14/x64
+2026-01-30T13:52:15.1816458Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.14/x64/lib
+2026-01-30T13:52:15.1817529Z ##[endgroup]
+2026-01-30T13:52:15.8337393Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages (25.3)
+2026-01-30T13:52:16.4098644Z Obtaining file:///home/runner/work/yuque-mcp/yuque-mcp
+2026-01-30T13:52:16.4117529Z   Installing build dependencies: started
+2026-01-30T13:52:17.1771416Z   Installing build dependencies: finished with status 'done'
+2026-01-30T13:52:17.1776901Z   Checking if build backend supports build_editable: started
+2026-01-30T13:52:17.2128599Z   Checking if build backend supports build_editable: finished with status 'done'
+2026-01-30T13:52:17.2135550Z   Getting requirements to build editable: started
+2026-01-30T13:52:17.3444601Z   Getting requirements to build editable: finished with status 'done'
+2026-01-30T13:52:17.3456988Z   Installing backend dependencies: started
+2026-01-30T13:52:17.8624461Z   Installing backend dependencies: finished with status 'done'
+2026-01-30T13:52:17.8632598Z   Preparing editable metadata (pyproject.toml): started
+2026-01-30T13:52:18.0246599Z   Preparing editable metadata (pyproject.toml): finished with status 'done'
+2026-01-30T13:52:18.1244276Z Collecting fastmcp>=2.0.0 (from yuque-mcp==0.2.0)
+2026-01-30T13:52:18.1896443Z   Downloading fastmcp-2.14.4-py3-none-any.whl.metadata (20 kB)
+2026-01-30T13:52:18.2256399Z Collecting httpx>=0.27.0 (from yuque-mcp==0.2.0)
+2026-01-30T13:52:18.2328101Z   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+2026-01-30T13:52:18.2566163Z Collecting pydantic-settings>=2.0.0 (from yuque-mcp==0.2.0)
+2026-01-30T13:52:18.2637860Z   Downloading pydantic_settings-2.12.0-py3-none-any.whl.metadata (3.4 kB)
+2026-01-30T13:52:18.4129917Z Collecting pydantic>=2.0.0 (from yuque-mcp==0.2.0)
+2026-01-30T13:52:18.4208608Z   Downloading pydantic-2.12.5-py3-none-any.whl.metadata (90 kB)
+2026-01-30T13:52:18.4532643Z Collecting python-dotenv>=1.0.0 (from yuque-mcp==0.2.0)
+2026-01-30T13:52:18.4607960Z   Downloading python_dotenv-1.2.1-py3-none-any.whl.metadata (25 kB)
+2026-01-30T13:52:18.5792723Z Collecting mypy>=1.0.0 (from yuque-mcp==0.2.0)
+2026-01-30T13:52:18.5895560Z   Downloading mypy-1.19.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.2 kB)
+2026-01-30T13:52:18.6158628Z Collecting pytest-asyncio>=0.21.0 (from yuque-mcp==0.2.0)
+2026-01-30T13:52:18.6230672Z   Downloading pytest_asyncio-1.3.0-py3-none-any.whl.metadata (4.1 kB)
+2026-01-30T13:52:18.6435332Z Collecting pytest-cov>=4.0.0 (from yuque-mcp==0.2.0)
+2026-01-30T13:52:18.6506385Z   Downloading pytest_cov-7.0.0-py3-none-any.whl.metadata (31 kB)
+2026-01-30T13:52:18.6740539Z Collecting pytest-httpx>=0.21.0 (from yuque-mcp==0.2.0)
+2026-01-30T13:52:18.6827417Z   Downloading pytest_httpx-0.36.0-py3-none-any.whl.metadata (35 kB)
+2026-01-30T13:52:18.7236611Z Collecting pytest>=7.0.0 (from yuque-mcp==0.2.0)
+2026-01-30T13:52:18.7316206Z   Downloading pytest-9.0.2-py3-none-any.whl.metadata (7.6 kB)
+2026-01-30T13:52:19.1425026Z Collecting ruff>=0.1.0 (from yuque-mcp==0.2.0)
+2026-01-30T13:52:19.1500359Z   Downloading ruff-0.14.14-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (26 kB)
+2026-01-30T13:52:19.1721475Z Collecting authlib>=1.6.5 (from fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.1792147Z   Downloading authlib-1.6.6-py2.py3-none-any.whl.metadata (9.8 kB)
+2026-01-30T13:52:19.2085424Z Collecting cyclopts>=4.0.0 (from fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.2155929Z   Downloading cyclopts-4.5.1-py3-none-any.whl.metadata (12 kB)
+2026-01-30T13:52:19.2365124Z Collecting exceptiongroup>=1.2.2 (from fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.2434776Z   Downloading exceptiongroup-1.3.1-py3-none-any.whl.metadata (6.7 kB)
+2026-01-30T13:52:19.2606897Z Collecting jsonref>=1.1.0 (from fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.2679161Z   Downloading jsonref-1.1.0-py3-none-any.whl.metadata (2.7 kB)
+2026-01-30T13:52:19.2816467Z Collecting jsonschema-path>=0.3.4 (from fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.2887353Z   Downloading jsonschema_path-0.3.4-py3-none-any.whl.metadata (4.3 kB)
+2026-01-30T13:52:19.3093746Z Collecting mcp<2.0,>=1.24.0 (from fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.3165581Z   Downloading mcp-1.26.0-py3-none-any.whl.metadata (89 kB)
+2026-01-30T13:52:19.3417632Z Collecting openapi-pydantic>=0.5.1 (from fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.3489103Z   Downloading openapi_pydantic-0.5.1-py3-none-any.whl.metadata (10 kB)
+2026-01-30T13:52:19.3720026Z Collecting packaging>=20.0 (from fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.3733119Z   Using cached packaging-26.0-py3-none-any.whl.metadata (3.3 kB)
+2026-01-30T13:52:19.3919950Z Collecting platformdirs>=4.0.0 (from fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.3989997Z   Downloading platformdirs-4.5.1-py3-none-any.whl.metadata (12 kB)
+2026-01-30T13:52:19.4148589Z Collecting py-key-value-aio<0.4.0,>=0.3.0 (from py-key-value-aio[disk,keyring,memory]<0.4.0,>=0.3.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.4219126Z   Downloading py_key_value_aio-0.3.0-py3-none-any.whl.metadata (2.5 kB)
+2026-01-30T13:52:19.4586193Z Collecting pydocket<0.17.0,>=0.16.6 (from fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.4658373Z   Downloading pydocket-0.16.6-py3-none-any.whl.metadata (6.3 kB)
+2026-01-30T13:52:19.4834560Z Collecting pyperclip>=1.9.0 (from fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.4905871Z   Downloading pyperclip-1.11.0-py3-none-any.whl.metadata (2.4 kB)
+2026-01-30T13:52:19.5338099Z Collecting rich>=13.9.4 (from fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.5410699Z   Downloading rich-14.3.1-py3-none-any.whl.metadata (18 kB)
+2026-01-30T13:52:19.5704827Z Collecting uvicorn>=0.35 (from fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.5779713Z   Downloading uvicorn-0.40.0-py3-none-any.whl.metadata (6.7 kB)
+2026-01-30T13:52:19.6715019Z Collecting websockets>=15.0.1 (from fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.6792523Z   Downloading websockets-16.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.8 kB)
+2026-01-30T13:52:19.7028630Z Collecting anyio>=4.5 (from mcp<2.0,>=1.24.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.7101477Z   Downloading anyio-4.12.1-py3-none-any.whl.metadata (4.3 kB)
+2026-01-30T13:52:19.7249156Z Collecting httpx-sse>=0.4 (from mcp<2.0,>=1.24.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.7319199Z   Downloading httpx_sse-0.4.3-py3-none-any.whl.metadata (9.7 kB)
+2026-01-30T13:52:19.7622099Z Collecting jsonschema>=4.20.0 (from mcp<2.0,>=1.24.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.7692740Z   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+2026-01-30T13:52:19.8033695Z Collecting pyjwt>=2.10.1 (from pyjwt[crypto]>=2.10.1->mcp<2.0,>=1.24.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.8103778Z   Downloading PyJWT-2.10.1-py3-none-any.whl.metadata (4.0 kB)
+2026-01-30T13:52:19.8279244Z Collecting python-multipart>=0.0.9 (from mcp<2.0,>=1.24.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.8350082Z   Downloading python_multipart-0.0.22-py3-none-any.whl.metadata (1.8 kB)
+2026-01-30T13:52:19.8598438Z Collecting sse-starlette>=1.6.1 (from mcp<2.0,>=1.24.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.8673857Z   Downloading sse_starlette-3.2.0-py3-none-any.whl.metadata (12 kB)
+2026-01-30T13:52:19.9022895Z Collecting starlette>=0.27 (from mcp<2.0,>=1.24.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.9094088Z   Downloading starlette-0.52.1-py3-none-any.whl.metadata (6.3 kB)
+2026-01-30T13:52:19.9304365Z Collecting typing-extensions>=4.9.0 (from mcp<2.0,>=1.24.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.9377942Z   Downloading typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+2026-01-30T13:52:19.9517269Z Collecting typing-inspection>=0.4.1 (from mcp<2.0,>=1.24.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.9590035Z   Downloading typing_inspection-0.4.2-py3-none-any.whl.metadata (2.6 kB)
+2026-01-30T13:52:19.9802051Z Collecting py-key-value-shared==0.3.0 (from py-key-value-aio<0.4.0,>=0.3.0->py-key-value-aio[disk,keyring,memory]<0.4.0,>=0.3.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:19.9872355Z   Downloading py_key_value_shared-0.3.0-py3-none-any.whl.metadata (706 bytes)
+2026-01-30T13:52:20.0105046Z Collecting beartype>=0.20.0 (from py-key-value-aio<0.4.0,>=0.3.0->py-key-value-aio[disk,keyring,memory]<0.4.0,>=0.3.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:20.0177330Z   Downloading beartype-0.22.9-py3-none-any.whl.metadata (37 kB)
+2026-01-30T13:52:20.0918782Z Collecting diskcache>=5.0.0 (from py-key-value-aio[disk,keyring,memory]<0.4.0,>=0.3.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:20.0991273Z   Downloading diskcache-5.6.3-py3-none-any.whl.metadata (20 kB)
+2026-01-30T13:52:20.1245283Z Collecting pathvalidate>=3.3.1 (from py-key-value-aio[disk,keyring,memory]<0.4.0,>=0.3.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:20.1319809Z   Downloading pathvalidate-3.3.1-py3-none-any.whl.metadata (12 kB)
+2026-01-30T13:52:20.1682850Z Collecting keyring>=25.6.0 (from py-key-value-aio[disk,keyring,memory]<0.4.0,>=0.3.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:20.1756352Z   Downloading keyring-25.7.0-py3-none-any.whl.metadata (21 kB)
+2026-01-30T13:52:20.2005949Z Collecting cachetools>=5.0.0 (from py-key-value-aio[disk,keyring,memory]<0.4.0,>=0.3.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:20.2077874Z   Downloading cachetools-6.2.6-py3-none-any.whl.metadata (5.6 kB)
+2026-01-30T13:52:20.2231480Z Collecting annotated-types>=0.6.0 (from pydantic>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:20.2301436Z   Downloading annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+2026-01-30T13:52:20.9305383Z Collecting pydantic-core==2.41.5 (from pydantic>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:20.9381730Z   Downloading pydantic_core-2.41.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.3 kB)
+2026-01-30T13:52:20.9620514Z Collecting cloudpickle>=3.1.1 (from pydocket<0.17.0,>=0.16.6->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:20.9689938Z   Downloading cloudpickle-3.1.2-py3-none-any.whl.metadata (7.1 kB)
+2026-01-30T13:52:20.9994324Z Collecting fakeredis>=2.32.1 (from fakeredis[lua]>=2.32.1->pydocket<0.17.0,>=0.16.6->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.0065416Z   Downloading fakeredis-2.33.0-py3-none-any.whl.metadata (4.4 kB)
+2026-01-30T13:52:21.0317863Z Collecting opentelemetry-api>=1.33.0 (from pydocket<0.17.0,>=0.16.6->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.0390219Z   Downloading opentelemetry_api-1.39.1-py3-none-any.whl.metadata (1.5 kB)
+2026-01-30T13:52:21.0592262Z Collecting opentelemetry-exporter-prometheus>=0.60b0 (from pydocket<0.17.0,>=0.16.6->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.0665055Z   Downloading opentelemetry_exporter_prometheus-0.60b1-py3-none-any.whl.metadata (2.1 kB)
+2026-01-30T13:52:21.0887839Z Collecting opentelemetry-instrumentation>=0.60b0 (from pydocket<0.17.0,>=0.16.6->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.0959894Z   Downloading opentelemetry_instrumentation-0.60b1-py3-none-any.whl.metadata (7.2 kB)
+2026-01-30T13:52:21.1149835Z Collecting prometheus-client>=0.21.1 (from pydocket<0.17.0,>=0.16.6->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.1221835Z   Downloading prometheus_client-0.24.1-py3-none-any.whl.metadata (2.1 kB)
+2026-01-30T13:52:21.1396671Z Collecting python-json-logger>=2.0.7 (from pydocket<0.17.0,>=0.16.6->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.1470061Z   Downloading python_json_logger-4.0.0-py3-none-any.whl.metadata (4.0 kB)
+2026-01-30T13:52:21.1795359Z Collecting redis>=5 (from pydocket<0.17.0,>=0.16.6->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.1870270Z   Downloading redis-7.1.0-py3-none-any.whl.metadata (12 kB)
+2026-01-30T13:52:21.2112970Z Collecting typer>=0.15.1 (from pydocket<0.17.0,>=0.16.6->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.2184044Z   Downloading typer-0.21.1-py3-none-any.whl.metadata (16 kB)
+2026-01-30T13:52:21.2409984Z Collecting idna>=2.8 (from anyio>=4.5->mcp<2.0,>=1.24.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.2479236Z   Downloading idna-3.11-py3-none-any.whl.metadata (8.4 kB)
+2026-01-30T13:52:21.4866022Z Collecting cryptography (from authlib>=1.6.5->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.4943794Z   Downloading cryptography-46.0.4-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (5.7 kB)
+2026-01-30T13:52:21.5223941Z Collecting attrs>=23.1.0 (from cyclopts>=4.0.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.5295596Z   Downloading attrs-25.4.0-py3-none-any.whl.metadata (10 kB)
+2026-01-30T13:52:21.5449145Z Collecting docstring-parser<4.0,>=0.15 (from cyclopts>=4.0.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.5519992Z   Downloading docstring_parser-0.17.0-py3-none-any.whl.metadata (3.5 kB)
+2026-01-30T13:52:21.5685065Z Collecting rich-rst<2.0.0,>=1.3.1 (from cyclopts>=4.0.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.5757576Z   Downloading rich_rst-1.3.2-py3-none-any.whl.metadata (6.1 kB)
+2026-01-30T13:52:21.6075156Z Collecting docutils (from rich-rst<2.0.0,>=1.3.1->cyclopts>=4.0.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.6145800Z   Downloading docutils-0.22.4-py3-none-any.whl.metadata (15 kB)
+2026-01-30T13:52:21.6585281Z Collecting sortedcontainers>=2 (from fakeredis>=2.32.1->fakeredis[lua]>=2.32.1->pydocket<0.17.0,>=0.16.6->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.6657063Z   Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl.metadata (10 kB)
+2026-01-30T13:52:21.7298510Z Collecting lupa>=2.1 (from fakeredis[lua]>=2.32.1->pydocket<0.17.0,>=0.16.6->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.7374391Z   Downloading lupa-2.6-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (58 kB)
+2026-01-30T13:52:21.7668364Z Collecting certifi (from httpx>=0.27.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.7739201Z   Downloading certifi-2026.1.4-py3-none-any.whl.metadata (2.5 kB)
+2026-01-30T13:52:21.7967363Z Collecting httpcore==1.* (from httpx>=0.27.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.8039365Z   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+2026-01-30T13:52:21.8228663Z Collecting h11>=0.16 (from httpcore==1.*->httpx>=0.27.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.8298542Z   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+2026-01-30T13:52:21.8554697Z Collecting jsonschema-specifications>=2023.03.6 (from jsonschema>=4.20.0->mcp<2.0,>=1.24.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.8623911Z   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+2026-01-30T13:52:21.8898233Z Collecting referencing>=0.28.4 (from jsonschema>=4.20.0->mcp<2.0,>=1.24.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:21.8970687Z   Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+2026-01-30T13:52:22.2337578Z Collecting rpds-py>=0.25.0 (from jsonschema>=4.20.0->mcp<2.0,>=1.24.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.2414834Z   Downloading rpds_py-0.30.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+2026-01-30T13:52:22.2857311Z Collecting PyYAML>=5.1 (from jsonschema-path>=0.3.4->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.2934813Z   Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-01-30T13:52:22.3105406Z Collecting pathable<0.5.0,>=0.4.1 (from jsonschema-path>=0.3.4->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.3178366Z   Downloading pathable-0.4.4-py3-none-any.whl.metadata (1.8 kB)
+2026-01-30T13:52:22.3296923Z Collecting referencing>=0.28.4 (from jsonschema>=4.20.0->mcp<2.0,>=1.24.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.3371331Z   Downloading referencing-0.36.2-py3-none-any.whl.metadata (2.8 kB)
+2026-01-30T13:52:22.3685266Z Collecting requests<3.0.0,>=2.31.0 (from jsonschema-path>=0.3.4->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.3761259Z   Downloading requests-2.32.5-py3-none-any.whl.metadata (4.9 kB)
+2026-01-30T13:52:22.4756796Z Collecting charset_normalizer<4,>=2 (from requests<3.0.0,>=2.31.0->jsonschema-path>=0.3.4->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.4835977Z   Downloading charset_normalizer-3.4.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (37 kB)
+2026-01-30T13:52:22.5296483Z Collecting urllib3<3,>=1.21.1 (from requests<3.0.0,>=2.31.0->jsonschema-path>=0.3.4->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.5371932Z   Downloading urllib3-2.6.3-py3-none-any.whl.metadata (6.9 kB)
+2026-01-30T13:52:22.5762257Z Collecting SecretStorage>=3.2 (from keyring>=25.6.0->py-key-value-aio[disk,keyring,memory]<0.4.0,>=0.3.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.5834952Z   Downloading secretstorage-3.5.0-py3-none-any.whl.metadata (4.0 kB)
+2026-01-30T13:52:22.5987880Z Collecting jeepney>=0.4.2 (from keyring>=25.6.0->py-key-value-aio[disk,keyring,memory]<0.4.0,>=0.3.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.6058694Z   Downloading jeepney-0.9.0-py3-none-any.whl.metadata (1.2 kB)
+2026-01-30T13:52:22.6396630Z Collecting importlib_metadata>=4.11.4 (from keyring>=25.6.0->py-key-value-aio[disk,keyring,memory]<0.4.0,>=0.3.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.6469966Z   Downloading importlib_metadata-8.7.1-py3-none-any.whl.metadata (4.7 kB)
+2026-01-30T13:52:22.6638729Z Collecting jaraco.classes (from keyring>=25.6.0->py-key-value-aio[disk,keyring,memory]<0.4.0,>=0.3.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.6708875Z   Downloading jaraco.classes-3.4.0-py3-none-any.whl.metadata (2.6 kB)
+2026-01-30T13:52:22.6923658Z Collecting jaraco.functools (from keyring>=25.6.0->py-key-value-aio[disk,keyring,memory]<0.4.0,>=0.3.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.6996405Z   Downloading jaraco_functools-4.4.0-py3-none-any.whl.metadata (3.0 kB)
+2026-01-30T13:52:22.7178376Z Collecting jaraco.context (from keyring>=25.6.0->py-key-value-aio[disk,keyring,memory]<0.4.0,>=0.3.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.7249800Z   Downloading jaraco_context-6.1.0-py3-none-any.whl.metadata (4.3 kB)
+2026-01-30T13:52:22.7500368Z Collecting zipp>=3.20 (from importlib_metadata>=4.11.4->keyring>=25.6.0->py-key-value-aio[disk,keyring,memory]<0.4.0,>=0.3.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.7574471Z   Downloading zipp-3.23.0-py3-none-any.whl.metadata (3.6 kB)
+2026-01-30T13:52:22.7763932Z Collecting mypy_extensions>=1.0.0 (from mypy>=1.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.7835958Z   Downloading mypy_extensions-1.1.0-py3-none-any.whl.metadata (1.1 kB)
+2026-01-30T13:52:22.7997054Z Collecting pathspec>=0.9.0 (from mypy>=1.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.8010567Z   Using cached pathspec-1.0.4-py3-none-any.whl.metadata (13 kB)
+2026-01-30T13:52:22.8940638Z Collecting librt>=0.6.2 (from mypy>=1.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.9017335Z   Downloading librt-0.7.8-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (1.3 kB)
+2026-01-30T13:52:22.9618381Z Collecting opentelemetry-sdk~=1.39.1 (from opentelemetry-exporter-prometheus>=0.60b0->pydocket<0.17.0,>=0.16.6->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:22.9690626Z   Downloading opentelemetry_sdk-1.39.1-py3-none-any.whl.metadata (1.5 kB)
+2026-01-30T13:52:22.9987426Z Collecting opentelemetry-semantic-conventions==0.60b1 (from opentelemetry-sdk~=1.39.1->opentelemetry-exporter-prometheus>=0.60b0->pydocket<0.17.0,>=0.16.6->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:23.0057871Z   Downloading opentelemetry_semantic_conventions-0.60b1-py3-none-any.whl.metadata (2.4 kB)
+2026-01-30T13:52:23.1678906Z Collecting wrapt<2.0.0,>=1.0.0 (from opentelemetry-instrumentation>=0.60b0->pydocket<0.17.0,>=0.16.6->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:23.1755626Z   Downloading wrapt-1.17.3-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.4 kB)
+2026-01-30T13:52:23.2244507Z Collecting email-validator>=2.0.0 (from pydantic[email]>=2.11.7->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:23.2315965Z   Downloading email_validator-2.3.0-py3-none-any.whl.metadata (26 kB)
+2026-01-30T13:52:23.2528514Z Collecting dnspython>=2.0.0 (from email-validator>=2.0.0->pydantic[email]>=2.11.7->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:23.2600736Z   Downloading dnspython-2.8.0-py3-none-any.whl.metadata (5.7 kB)
+2026-01-30T13:52:23.4845570Z Collecting cffi>=2.0.0 (from cryptography->authlib>=1.6.5->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:23.4935653Z   Downloading cffi-2.0.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.6 kB)
+2026-01-30T13:52:23.5108515Z Collecting pycparser (from cffi>=2.0.0->cryptography->authlib>=1.6.5->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:23.5182334Z   Downloading pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)
+2026-01-30T13:52:23.5362773Z Collecting iniconfig>=1.0.1 (from pytest>=7.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:23.5433162Z   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+2026-01-30T13:52:23.5635364Z Collecting pluggy<2,>=1.5 (from pytest>=7.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:23.5648985Z   Using cached pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+2026-01-30T13:52:23.5864861Z Collecting pygments>=2.7.2 (from pytest>=7.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:23.5936740Z   Downloading pygments-2.19.2-py3-none-any.whl.metadata (2.5 kB)
+2026-01-30T13:52:23.9695422Z Collecting coverage>=7.10.6 (from coverage[toml]>=7.10.6->pytest-cov>=4.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:23.9775179Z   Downloading coverage-7.13.2-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (8.5 kB)
+2026-01-30T13:52:24.0346734Z Collecting markdown-it-py>=2.2.0 (from rich>=13.9.4->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:24.0422486Z   Downloading markdown_it_py-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+2026-01-30T13:52:24.0697053Z Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=13.9.4->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:24.0776620Z   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+2026-01-30T13:52:24.1634156Z Collecting click>=8.0.0 (from typer>=0.15.1->pydocket<0.17.0,>=0.16.6->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:24.1708511Z   Downloading click-8.3.1-py3-none-any.whl.metadata (2.6 kB)
+2026-01-30T13:52:24.1941655Z Collecting shellingham>=1.3.0 (from typer>=0.15.1->pydocket<0.17.0,>=0.16.6->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:24.2012888Z   Downloading shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+2026-01-30T13:52:24.2605582Z Collecting more-itertools (from jaraco.classes->keyring>=25.6.0->py-key-value-aio[disk,keyring,memory]<0.4.0,>=0.3.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:24.2685504Z   Downloading more_itertools-10.8.0-py3-none-any.whl.metadata (39 kB)
+2026-01-30T13:52:24.2864828Z Collecting backports.tarfile (from jaraco.context->keyring>=25.6.0->py-key-value-aio[disk,keyring,memory]<0.4.0,>=0.3.0->fastmcp>=2.0.0->yuque-mcp==0.2.0)
+2026-01-30T13:52:24.2938452Z   Downloading backports.tarfile-1.2.0-py3-none-any.whl.metadata (2.0 kB)
+2026-01-30T13:52:24.3178393Z Downloading fastmcp-2.14.4-py3-none-any.whl (417 kB)
+2026-01-30T13:52:24.3499156Z Downloading mcp-1.26.0-py3-none-any.whl (233 kB)
+2026-01-30T13:52:24.3699440Z Downloading py_key_value_aio-0.3.0-py3-none-any.whl (96 kB)
+2026-01-30T13:52:24.3817799Z Downloading py_key_value_shared-0.3.0-py3-none-any.whl (19 kB)
+2026-01-30T13:52:24.3926146Z Downloading pydantic-2.12.5-py3-none-any.whl (463 kB)
+2026-01-30T13:52:24.4201477Z Downloading pydantic_core-2.41.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+2026-01-30T13:52:24.4869897Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 32.0 MB/s  0:00:00
+2026-01-30T13:52:24.4942426Z Downloading pydocket-0.16.6-py3-none-any.whl (67 kB)
+2026-01-30T13:52:24.5056754Z Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
+2026-01-30T13:52:24.5150902Z Downloading anyio-4.12.1-py3-none-any.whl (113 kB)
+2026-01-30T13:52:24.5253556Z Downloading authlib-1.6.6-py2.py3-none-any.whl (244 kB)
+2026-01-30T13:52:24.5405866Z Downloading beartype-0.22.9-py3-none-any.whl (1.3 MB)
+2026-01-30T13:52:24.5730499Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 43.6 MB/s  0:00:00
+2026-01-30T13:52:24.5804369Z Downloading cachetools-6.2.6-py3-none-any.whl (11 kB)
+2026-01-30T13:52:24.5899054Z Downloading cloudpickle-3.1.2-py3-none-any.whl (22 kB)
+2026-01-30T13:52:24.5989551Z Downloading cyclopts-4.5.1-py3-none-any.whl (199 kB)
+2026-01-30T13:52:24.6112237Z Downloading docstring_parser-0.17.0-py3-none-any.whl (36 kB)
+2026-01-30T13:52:24.6206518Z Downloading rich_rst-1.3.2-py3-none-any.whl (12 kB)
+2026-01-30T13:52:24.6299463Z Downloading attrs-25.4.0-py3-none-any.whl (67 kB)
+2026-01-30T13:52:24.6396758Z Downloading diskcache-5.6.3-py3-none-any.whl (45 kB)
+2026-01-30T13:52:24.6491327Z Downloading exceptiongroup-1.3.1-py3-none-any.whl (16 kB)
+2026-01-30T13:52:24.6581832Z Downloading fakeredis-2.33.0-py3-none-any.whl (119 kB)
+2026-01-30T13:52:24.6679563Z Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+2026-01-30T13:52:24.6775719Z Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+2026-01-30T13:52:24.6868360Z Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+2026-01-30T13:52:24.6965670Z Downloading httpx_sse-0.4.3-py3-none-any.whl (9.0 kB)
+2026-01-30T13:52:24.7057015Z Downloading idna-3.11-py3-none-any.whl (71 kB)
+2026-01-30T13:52:24.7160287Z Downloading jsonref-1.1.0-py3-none-any.whl (9.4 kB)
+2026-01-30T13:52:24.7251989Z Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+2026-01-30T13:52:24.7351877Z Downloading jsonschema_path-0.3.4-py3-none-any.whl (14 kB)
+2026-01-30T13:52:24.7446233Z Downloading pathable-0.4.4-py3-none-any.whl (9.6 kB)
+2026-01-30T13:52:24.7539343Z Downloading referencing-0.36.2-py3-none-any.whl (26 kB)
+2026-01-30T13:52:24.7630749Z Downloading requests-2.32.5-py3-none-any.whl (64 kB)
+2026-01-30T13:52:24.7726437Z Downloading charset_normalizer-3.4.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (151 kB)
+2026-01-30T13:52:24.7835797Z Downloading urllib3-2.6.3-py3-none-any.whl (131 kB)
+2026-01-30T13:52:24.7941212Z Downloading certifi-2026.1.4-py3-none-any.whl (152 kB)
+2026-01-30T13:52:24.8062276Z Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+2026-01-30T13:52:24.8155035Z Downloading keyring-25.7.0-py3-none-any.whl (39 kB)
+2026-01-30T13:52:24.8252133Z Downloading importlib_metadata-8.7.1-py3-none-any.whl (27 kB)
+2026-01-30T13:52:24.8355653Z Downloading jeepney-0.9.0-py3-none-any.whl (49 kB)
+2026-01-30T13:52:24.8449006Z Downloading lupa-2.6-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (2.1 MB)
+2026-01-30T13:52:24.8839077Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 53.2 MB/s  0:00:00
+2026-01-30T13:52:24.8914248Z Downloading mypy-1.19.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (13.4 MB)
+2026-01-30T13:52:25.0244829Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.4/13.4 MB 102.5 MB/s  0:00:00
+2026-01-30T13:52:25.0322704Z Downloading librt-0.7.8-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (188 kB)
+2026-01-30T13:52:25.0427987Z Downloading mypy_extensions-1.1.0-py3-none-any.whl (5.0 kB)
+2026-01-30T13:52:25.0523037Z Downloading openapi_pydantic-0.5.1-py3-none-any.whl (96 kB)
+2026-01-30T13:52:25.0625297Z Downloading opentelemetry_api-1.39.1-py3-none-any.whl (66 kB)
+2026-01-30T13:52:25.0727125Z Downloading opentelemetry_exporter_prometheus-0.60b1-py3-none-any.whl (13 kB)
+2026-01-30T13:52:25.0828348Z Downloading opentelemetry_sdk-1.39.1-py3-none-any.whl (132 kB)
+2026-01-30T13:52:25.0934003Z Downloading opentelemetry_semantic_conventions-0.60b1-py3-none-any.whl (219 kB)
+2026-01-30T13:52:25.1043576Z Downloading prometheus_client-0.24.1-py3-none-any.whl (64 kB)
+2026-01-30T13:52:25.1143711Z Downloading opentelemetry_instrumentation-0.60b1-py3-none-any.whl (33 kB)
+2026-01-30T13:52:25.1241739Z Downloading wrapt-1.17.3-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (82 kB)
+2026-01-30T13:52:25.1285705Z Using cached packaging-26.0-py3-none-any.whl (74 kB)
+2026-01-30T13:52:25.1300835Z Using cached pathspec-1.0.4-py3-none-any.whl (55 kB)
+2026-01-30T13:52:25.1375390Z Downloading pathvalidate-3.3.1-py3-none-any.whl (24 kB)
+2026-01-30T13:52:25.1475825Z Downloading platformdirs-4.5.1-py3-none-any.whl (18 kB)
+2026-01-30T13:52:25.1576083Z Downloading pydantic_settings-2.12.0-py3-none-any.whl (51 kB)
+2026-01-30T13:52:25.1680490Z Downloading email_validator-2.3.0-py3-none-any.whl (35 kB)
+2026-01-30T13:52:25.1796305Z Downloading dnspython-2.8.0-py3-none-any.whl (331 kB)
+2026-01-30T13:52:25.1916184Z Downloading PyJWT-2.10.1-py3-none-any.whl (22 kB)
+2026-01-30T13:52:25.2033126Z Downloading cryptography-46.0.4-cp311-abi3-manylinux_2_34_x86_64.whl (4.5 MB)
+2026-01-30T13:52:25.2342678Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.5/4.5 MB 151.1 MB/s  0:00:00
+2026-01-30T13:52:25.2421842Z Downloading cffi-2.0.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (215 kB)
+2026-01-30T13:52:25.2524329Z Downloading pyperclip-1.11.0-py3-none-any.whl (11 kB)
+2026-01-30T13:52:25.2624062Z Downloading pytest-9.0.2-py3-none-any.whl (374 kB)
+2026-01-30T13:52:25.2679643Z Using cached pluggy-1.6.0-py3-none-any.whl (20 kB)
+2026-01-30T13:52:25.2760256Z Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+2026-01-30T13:52:25.2857320Z Downloading pygments-2.19.2-py3-none-any.whl (1.2 MB)
+2026-01-30T13:52:25.2948975Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 145.0 MB/s  0:00:00
+2026-01-30T13:52:25.3032778Z Downloading pytest_asyncio-1.3.0-py3-none-any.whl (15 kB)
+2026-01-30T13:52:25.3129494Z Downloading pytest_cov-7.0.0-py3-none-any.whl (22 kB)
+2026-01-30T13:52:25.3228520Z Downloading coverage-7.13.2-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (251 kB)
+2026-01-30T13:52:25.3330355Z Downloading pytest_httpx-0.36.0-py3-none-any.whl (20 kB)
+2026-01-30T13:52:25.3421301Z Downloading python_dotenv-1.2.1-py3-none-any.whl (21 kB)
+2026-01-30T13:52:25.3512825Z Downloading python_json_logger-4.0.0-py3-none-any.whl (15 kB)
+2026-01-30T13:52:25.3601863Z Downloading python_multipart-0.0.22-py3-none-any.whl (24 kB)
+2026-01-30T13:52:25.3695408Z Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (806 kB)
+2026-01-30T13:52:25.3762093Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 806.6/806.6 kB 123.5 MB/s  0:00:00
+2026-01-30T13:52:25.3835441Z Downloading redis-7.1.0-py3-none-any.whl (354 kB)
+2026-01-30T13:52:25.3942796Z Downloading rich-14.3.1-py3-none-any.whl (309 kB)
+2026-01-30T13:52:25.4060508Z Downloading markdown_it_py-4.0.0-py3-none-any.whl (87 kB)
+2026-01-30T13:52:25.4154333Z Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+2026-01-30T13:52:25.4245374Z Downloading rpds_py-0.30.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (390 kB)
+2026-01-30T13:52:25.4354854Z Downloading ruff-0.14.14-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.2 MB)
+2026-01-30T13:52:25.4964761Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.2/11.2 MB 188.5 MB/s  0:00:00
+2026-01-30T13:52:25.5039590Z Downloading secretstorage-3.5.0-py3-none-any.whl (15 kB)
+2026-01-30T13:52:25.5137072Z Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
+2026-01-30T13:52:25.5233921Z Downloading sse_starlette-3.2.0-py3-none-any.whl (12 kB)
+2026-01-30T13:52:25.5336261Z Downloading starlette-0.52.1-py3-none-any.whl (74 kB)
+2026-01-30T13:52:25.5440502Z Downloading typer-0.21.1-py3-none-any.whl (47 kB)
+2026-01-30T13:52:25.5538126Z Downloading click-8.3.1-py3-none-any.whl (108 kB)
+2026-01-30T13:52:25.5638367Z Downloading shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+2026-01-30T13:52:25.5727426Z Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+2026-01-30T13:52:25.5822270Z Downloading typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+2026-01-30T13:52:25.5916749Z Downloading uvicorn-0.40.0-py3-none-any.whl (68 kB)
+2026-01-30T13:52:25.6014055Z Downloading websockets-16.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (184 kB)
+2026-01-30T13:52:25.6115507Z Downloading zipp-3.23.0-py3-none-any.whl (10 kB)
+2026-01-30T13:52:25.6254583Z Downloading docutils-0.22.4-py3-none-any.whl (633 kB)
+2026-01-30T13:52:25.6319181Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 633.2/633.2 kB 99.2 MB/s  0:00:00
+2026-01-30T13:52:25.6389799Z Downloading jaraco.classes-3.4.0-py3-none-any.whl (6.8 kB)
+2026-01-30T13:52:25.6477922Z Downloading jaraco_context-6.1.0-py3-none-any.whl (7.1 kB)
+2026-01-30T13:52:25.6566866Z Downloading backports.tarfile-1.2.0-py3-none-any.whl (30 kB)
+2026-01-30T13:52:25.6657753Z Downloading jaraco_functools-4.4.0-py3-none-any.whl (10 kB)
+2026-01-30T13:52:25.6753960Z Downloading more_itertools-10.8.0-py3-none-any.whl (69 kB)
+2026-01-30T13:52:25.6847331Z Downloading pycparser-3.0-py3-none-any.whl (48 kB)
+2026-01-30T13:52:25.7874587Z Building wheels for collected packages: yuque-mcp
+2026-01-30T13:52:25.7882866Z   Building editable for yuque-mcp (pyproject.toml): started
+2026-01-30T13:52:25.8206824Z   Building editable for yuque-mcp (pyproject.toml): finished with status 'done'
+2026-01-30T13:52:25.8212610Z   Created wheel for yuque-mcp: filename=yuque_mcp-0.2.0-py3-none-any.whl size=6600 sha256=35d3539eecb292ae93d9e1561180601126d7894e8a09c59ed8f1f2aad84a81eb
+2026-01-30T13:52:25.8214292Z   Stored in directory: /tmp/pip-ephem-wheel-cache-tg1kbun1/wheels/83/13/81/59ecf958e41486bc56ff17a4eacf5f42b4249cf71727a33784
+2026-01-30T13:52:25.8236650Z Successfully built yuque-mcp
+2026-01-30T13:52:25.9682428Z Installing collected packages: sortedcontainers, pyperclip, lupa, zipp, wrapt, websockets, urllib3, typing-extensions, shellingham, ruff, rpds-py, redis, PyYAML, python-multipart, python-json-logger, python-dotenv, pyjwt, pygments, pycparser, prometheus-client, pluggy, platformdirs, pathvalidate, pathspec, pathable, packaging, mypy_extensions, more-itertools, mdurl, librt, jsonref, jeepney, iniconfig, idna, httpx-sse, h11, docutils, docstring-parser, dnspython, diskcache, coverage, cloudpickle, click, charset_normalizer, certifi, cachetools, beartype, backports.tarfile, attrs, annotated-types, uvicorn, typing-inspection, requests, referencing, pytest, pydantic-core, py-key-value-shared, mypy, markdown-it-py, jaraco.functools, jaraco.context, jaraco.classes, importlib_metadata, httpcore, fakeredis, exceptiongroup, email-validator, cffi, anyio, starlette, rich, pytest-cov, pytest-asyncio, pydantic, py-key-value-aio, opentelemetry-api, jsonschema-specifications, jsonschema-path, httpx, cryptography, typer, sse-starlette, SecretStorage, rich-rst, pytest-httpx, pydantic-settings, opentelemetry-semantic-conventions, openapi-pydantic, jsonschema, authlib, opentelemetry-sdk, opentelemetry-instrumentation, mcp, keyring, cyclopts, opentelemetry-exporter-prometheus, pydocket, fastmcp, yuque-mcp
+2026-01-30T13:52:33.0727196Z 
+2026-01-30T13:52:33.0784377Z Successfully installed PyYAML-6.0.3 SecretStorage-3.5.0 annotated-types-0.7.0 anyio-4.12.1 attrs-25.4.0 authlib-1.6.6 backports.tarfile-1.2.0 beartype-0.22.9 cachetools-6.2.6 certifi-2026.1.4 cffi-2.0.0 charset_normalizer-3.4.4 click-8.3.1 cloudpickle-3.1.2 coverage-7.13.2 cryptography-46.0.4 cyclopts-4.5.1 diskcache-5.6.3 dnspython-2.8.0 docstring-parser-0.17.0 docutils-0.22.4 email-validator-2.3.0 exceptiongroup-1.3.1 fakeredis-2.33.0 fastmcp-2.14.4 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 httpx-sse-0.4.3 idna-3.11 importlib_metadata-8.7.1 iniconfig-2.3.0 jaraco.classes-3.4.0 jaraco.context-6.1.0 jaraco.functools-4.4.0 jeepney-0.9.0 jsonref-1.1.0 jsonschema-4.26.0 jsonschema-path-0.3.4 jsonschema-specifications-2025.9.1 keyring-25.7.0 librt-0.7.8 lupa-2.6 markdown-it-py-4.0.0 mcp-1.26.0 mdurl-0.1.2 more-itertools-10.8.0 mypy-1.19.1 mypy_extensions-1.1.0 openapi-pydantic-0.5.1 opentelemetry-api-1.39.1 opentelemetry-exporter-prometheus-0.60b1 opentelemetry-instrumentation-0.60b1 opentelemetry-sdk-1.39.1 opentelemetry-semantic-conventions-0.60b1 packaging-26.0 pathable-0.4.4 pathspec-1.0.4 pathvalidate-3.3.1 platformdirs-4.5.1 pluggy-1.6.0 prometheus-client-0.24.1 py-key-value-aio-0.3.0 py-key-value-shared-0.3.0 pycparser-3.0 pydantic-2.12.5 pydantic-core-2.41.5 pydantic-settings-2.12.0 pydocket-0.16.6 pygments-2.19.2 pyjwt-2.10.1 pyperclip-1.11.0 pytest-9.0.2 pytest-asyncio-1.3.0 pytest-cov-7.0.0 pytest-httpx-0.36.0 python-dotenv-1.2.1 python-json-logger-4.0.0 python-multipart-0.0.22 redis-7.1.0 referencing-0.36.2 requests-2.32.5 rich-14.3.1 rich-rst-1.3.2 rpds-py-0.30.0 ruff-0.14.14 shellingham-1.5.4 sortedcontainers-2.4.0 sse-starlette-3.2.0 starlette-0.52.1 typer-0.21.1 typing-extensions-4.15.0 typing-inspection-0.4.2 urllib3-2.6.3 uvicorn-0.40.0 websockets-16.0 wrapt-1.17.3 yuque-mcp-0.2.0 zipp-3.23.0
+2026-01-30T13:52:33.6969373Z ##[group]Run ruff check src/yuque_mcp tests
+2026-01-30T13:52:33.6969723Z [36;1mruff check src/yuque_mcp tests[0m
+2026-01-30T13:52:33.7004167Z shell: /usr/bin/bash -e {0}
+2026-01-30T13:52:33.7004412Z env:
+2026-01-30T13:52:33.7004671Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.14/x64
+2026-01-30T13:52:33.7005118Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.14/x64/lib/pkgconfig
+2026-01-30T13:52:33.7005524Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.14/x64
+2026-01-30T13:52:33.7005893Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.14/x64
+2026-01-30T13:52:33.7006251Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.14/x64
+2026-01-30T13:52:33.7006612Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.14/x64/lib
+2026-01-30T13:52:33.7006913Z ##[endgroup]
+2026-01-30T13:52:33.7146644Z I001 [*] Import block is un-sorted or un-formatted
+2026-01-30T13:52:33.7147418Z   --> src/yuque_mcp/models.py:7:1
+2026-01-30T13:52:33.7147808Z    |
+2026-01-30T13:52:33.7148025Z  5 |   """
+2026-01-30T13:52:33.7148171Z  6 |
+2026-01-30T13:52:33.7148347Z  7 | / from __future__ import annotations
+2026-01-30T13:52:33.7148587Z  8 | |
+2026-01-30T13:52:33.7148755Z  9 | | from datetime import datetime
+2026-01-30T13:52:33.7148997Z 10 | | from enum import Enum
+2026-01-30T13:52:33.7149230Z 11 | | from typing import Any
+2026-01-30T13:52:33.7149425Z 12 | |
+2026-01-30T13:52:33.7149646Z 13 | | from pydantic import BaseModel, Field, field_validator
+2026-01-30T13:52:33.7150052Z 14 | | from pydantic_settings import BaseSettings, SettingsConfigDict
+2026-01-30T13:52:33.7150444Z    | |______________________________________________________________^
+2026-01-30T13:52:33.7150724Z    |
+2026-01-30T13:52:33.7150878Z help: Organize imports
+2026-01-30T13:52:33.7151012Z 
+2026-01-30T13:52:33.7151481Z B904 Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling
+2026-01-30T13:52:33.7152114Z   --> src/yuque_mcp/server.py:56:13
+2026-01-30T13:52:33.7152339Z    |
+2026-01-30T13:52:33.7152500Z 54 |         except Exception as e:
+2026-01-30T13:52:33.7152812Z 55 |             logger.error("Failed to initialize Yuque client: %s", e)
+2026-01-30T13:52:33.7153229Z 56 |             raise RuntimeError(f"Failed to initialize YuqueClient: {e}")
+2026-01-30T13:52:33.7154107Z    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-30T13:52:33.7154395Z 57 |     return _client
+2026-01-30T13:52:33.7154575Z    |
+2026-01-30T13:52:33.7154673Z 
+2026-01-30T13:52:33.7154739Z Found 2 errors.
+2026-01-30T13:52:33.7154935Z [*] 1 fixable with the `--fix` option.
+2026-01-30T13:52:33.7169465Z ##[error]Process completed with exit code 1.
+2026-01-30T13:52:33.7293701Z Post job cleanup.
+2026-01-30T13:52:33.8229242Z [command]/usr/bin/git version
+2026-01-30T13:52:33.8267493Z git version 2.52.0
+2026-01-30T13:52:33.8312433Z Temporarily overriding HOME='/home/runner/work/_temp/13caef60-3a17-452a-a667-623b0bdebee4' before making global git config changes
+2026-01-30T13:52:33.8314015Z Adding repository directory to the temporary git global config as a safe directory
+2026-01-30T13:52:33.8327840Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/yuque-mcp/yuque-mcp
+2026-01-30T13:52:33.8362232Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-01-30T13:52:33.8394841Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-01-30T13:52:33.8630766Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-01-30T13:52:33.8651837Z http.https://github.com/.extraheader
+2026-01-30T13:52:33.8663763Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-01-30T13:52:33.8693792Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-01-30T13:52:33.8912864Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-01-30T13:52:33.8943965Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-01-30T13:52:33.9272434Z Cleaning up orphan processes
