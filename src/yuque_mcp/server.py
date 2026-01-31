@@ -53,7 +53,7 @@ def get_client() -> YuqueClient:
             logger.info("Yuque client initialized successfully")
         except Exception as e:
             logger.error("Failed to initialize Yuque client: %s", e)
-            raise RuntimeError(f"Failed to initialize YuqueClient: {e}")
+            raise RuntimeError(f"Failed to initialize YuqueClient: {e}") from e
     return _client
 
 
