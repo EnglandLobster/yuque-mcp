@@ -180,7 +180,8 @@ class YuqueClient:
             if response.status_code >= 400:
                 self._handle_error(response)
 
-            return response.json()
+            result: dict[str, Any] = response.json()
+            return result
 
         except httpx.HTTPError as e:
             logger.exception("HTTP request failed: %s", str(e))
