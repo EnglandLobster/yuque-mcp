@@ -362,7 +362,7 @@ async def update_toc(
     open_window: int | None = None,
     visible: int | None = None,
 ) -> str:
-    """Modify TOC structure. action: appendNode|prependNode|editNode|removeNode. mode: child|sibling. node_type: DOC|LINK|TITLE."""
+    """Modify TOC structure. To create a group/folder, use node_type='TITLE'. action: appendNode|prependNode|editNode|removeNode. mode: child|sibling."""
     try:
         client = get_client()
 
