@@ -197,7 +197,7 @@ async def create_repository(
     description: str | None = None,
     public: int = 0,
 ) -> str:
-    """Create repo under user/group. slug: URL path (alphanumeric/-). public: 0=private,1=public,2=internal."""
+    """Create repo under user/group (login). slug: URL path (alphanumeric/-). public: 0=private,1=public,2=internal."""
     try:
         client = get_client()
         data = RepositoryCreate(
@@ -362,7 +362,7 @@ async def update_toc(
     open_window: int | None = None,
     visible: int | None = None,
 ) -> str:
-    """Modify TOC structure. To create a group/folder, use node_type='TITLE'. action: appendNode|prependNode|editNode|removeNode. mode: child|sibling."""
+    """Modify TOC structure. To create a group/folder, use node_type='TITLE'. action: appendNode|prependNode|editNode|removeNode. action_mode: child|sibling."""
     try:
         client = get_client()
 
