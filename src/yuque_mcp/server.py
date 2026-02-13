@@ -4,7 +4,7 @@ This module provides an MCP server that exposes Yuque API functionality
 as tools for AI assistants. It includes proper lifecycle management,
 comprehensive error handling, and well-designed tool interfaces.
 
-Tool Count: 11 tools (optimized from 15)
+Tool Count: 13 tools (11 original + 2 file-based upload tools)
 - Combined operations reduce API calls
 - Removed dangerous/low-frequency operations
 """
@@ -12,9 +12,11 @@ Tool Count: 11 tools (optimized from 15)
 from __future__ import annotations
 
 import logging
+from pathlib import Path
 from typing import Any
 
 from fastmcp import FastMCP
+from mcp.types import ToolAnnotations
 
 from .client import YuqueClient
 from .models import (
@@ -128,8 +130,16 @@ def format_toc(toc_items: list[Any]) -> str:
 # =============================================================================
 
 
-@mcp.tool()
-async def get_current_user() -> str:
+@mcp.tool(
+    name="yuque_get_current_user",
+    annotations=ToolAnnotations(
+        readOnlyHint=True,
+        destructiveHint=False,
+        idempotentHint=True,
+        openWorldHint=True,
+    ),
+)
+async def yuque_get_current_user() -> str:
     """Get authenticated user profile with stats (name, ID, repos count, followers)."""
     try:
         client = get_client()
@@ -144,8 +154,16 @@ async def get_current_user() -> str:
 # =============================================================================
 
 
-@mcp.tool()
-async def get_my_repositories(
+@mcp.tool(
+    name="yuque_get_my_repositories",
+    annotations=ToolAnnotations(
+        readOnlyHint=True,
+        destructiveHint=False,
+        idempotentHint=True,
+        openWorldHint=True,
+    ),
+)
+async def yuque_get_my_repositories(
     repo_type: str | None = None,
     offset: int = 0,
     limit: int = 20,
@@ -173,8 +191,16 @@ async def get_my_repositories(
         return f"✗ Error: {e.message}"
 
 
-@mcp.tool()
-async def get_repository_overview(repo_id: str) -> str:
+@mcp.tool(
+    name="yuque_get_repository_overview",
+    annotations=ToolAnnotations(
+        readOnlyHint=True,
+        destructiveHint=False,
+        idempotentHint=True,
+        openWorldHint=True,
+    ),
+)
+async def yuque_get_repository_overview(repo_id: str) -> str:
     """Get repo details + full TOC structure. repo_id: ID (int) or namespace 'user/repo'."""
     try:
         client = get_client()
@@ -189,8 +215,16 @@ async def get_repository_overview(repo_id: str) -> str:
         return f"✗ Error: {e.message}"
 
 
-@mcp.tool()
-async def create_repository(
+@mcp.tool(
+    name="yuque_create_repository",
+    annotations=ToolAnnotations(
+        readOnlyHint=False,
+        destructiveHint=False,
+        idempotentHint=False,
+        openWorldHint=True,
+    ),
+)
+async def yuque_create_repository(
     login: str,
     name: str,
     slug: str,
@@ -219,12 +253,52 @@ async def create_repository(
 
 
 # =============================================================================
-# Document Tools (5 tools) - Optimized from 6
+# File Helpers
 # =============================================================================
 
 
-@mcp.tool()
-async def list_documents(
+def _read_markdown_file(file_path: str) -> tuple[str, str | None]:
+    """Read a markdown file and extract title from first heading if present.
+
+    Returns:
+        Tuple of (content, extracted_title). extracted_title may be None.
+    """
+    path = Path(file_path).expanduser().resolve()
+    if not path.exists():
+        raise FileNotFoundError(f"File not found: {path}")
+    if not path.is_file():
+        raise ValueError(f"Not a file: {path}")
+
+    content = path.read_text(encoding="utf-8")
+
+    # Try to extract title from first '# heading'
+    title = None
+    for line in content.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("# ") and not stripped.startswith("##"):
+            title = stripped[2:].strip()
+            break
+        elif stripped:  # Non-empty, non-heading line found first
+            break
+
+    return content, title
+
+
+# =============================================================================
+# Document Tools (7 tools) - Includes file-based upload tools
+# =============================================================================
+
+
+@mcp.tool(
+    name="yuque_list_documents",
+    annotations=ToolAnnotations(
+        readOnlyHint=True,
+        destructiveHint=False,
+        idempotentHint=True,
+        openWorldHint=True,
+    ),
+)
+async def yuque_list_documents(
     repo_id: str,
     offset: int = 0,
     limit: int = 20,
@@ -250,8 +324,16 @@ async def list_documents(
         return f"✗ Error: {e.message}"
 
 
-@mcp.tool()
-async def get_document(repo_id: str, doc_id: str) -> str:
+@mcp.tool(
+    name="yuque_get_document",
+    annotations=ToolAnnotations(
+        readOnlyHint=True,
+        destructiveHint=False,
+        idempotentHint=True,
+        openWorldHint=True,
+    ),
+)
+async def yuque_get_document(repo_id: str, doc_id: str) -> str:
     """Read document content + metadata. doc_id: ID (int) or slug string."""
     try:
         client = get_client()
@@ -261,8 +343,16 @@ async def get_document(repo_id: str, doc_id: str) -> str:
         return f"✗ Error: {e.message}"
 
 
-@mcp.tool()
-async def create_document_with_toc(
+@mcp.tool(
+    name="yuque_create_document_with_toc",
+    annotations=ToolAnnotations(
+        readOnlyHint=False,
+        destructiveHint=False,
+        idempotentHint=False,
+        openWorldHint=True,
+    ),
+)
+async def yuque_create_document_with_toc(
     repo_id: str,
     title: str,
     body: str,
@@ -299,8 +389,16 @@ async def create_document_with_toc(
         return f"✗ Error: {e.message}"
 
 
-@mcp.tool()
-async def update_document(
+@mcp.tool(
+    name="yuque_update_document",
+    annotations=ToolAnnotations(
+        readOnlyHint=False,
+        destructiveHint=False,
+        idempotentHint=True,
+        openWorldHint=True,
+    ),
+)
+async def yuque_update_document(
     repo_id: str,
     doc_id: str,
     title: str | None = None,
@@ -329,8 +427,16 @@ async def update_document(
         return f"✗ Error: {e.message}"
 
 
-@mcp.tool()
-async def delete_document(repo_id: str, doc_id: str) -> str:
+@mcp.tool(
+    name="yuque_delete_document",
+    annotations=ToolAnnotations(
+        readOnlyHint=False,
+        destructiveHint=True,
+        idempotentHint=False,
+        openWorldHint=True,
+    ),
+)
+async def yuque_delete_document(repo_id: str, doc_id: str) -> str:
     """Delete document permanently (irreversible)."""
     try:
         client = get_client()
@@ -343,13 +449,119 @@ async def delete_document(repo_id: str, doc_id: str) -> str:
         return f"✗ Error: {e.message}"
 
 
+@mcp.tool(
+    name="yuque_create_document_from_file",
+    annotations=ToolAnnotations(
+        readOnlyHint=False,
+        destructiveHint=False,
+        idempotentHint=False,
+        openWorldHint=False,
+    ),
+)
+async def yuque_create_document_from_file(
+    repo_id: str,
+    file_path: str,
+    title: str | None = None,
+    slug: str | None = None,
+    public: int = 0,
+    parent_uuid: str | None = None,
+) -> str:
+    """Create doc from a local .md file and auto-add to TOC. Reads file content from file_path to avoid passing large body text. Title auto-extracted from first '# heading' if not provided."""
+    try:
+        content, extracted_title = _read_markdown_file(file_path)
+
+        # Determine title: explicit > extracted from heading > filename
+        if title is None:
+            if extracted_title:
+                title = extracted_title
+            else:
+                title = Path(file_path).stem
+
+        client = get_client()
+        data = DocumentCreate(
+            title=title,
+            body=content,
+            format="markdown",
+            slug=slug,
+            public=public,
+        )
+        doc = await client.create_document(repo_id, data)
+        await client.add_document_to_toc(repo_id, doc.id, parent_uuid)
+
+        return (
+            f"✓ Document created from file and added to TOC!\n\n"
+            f"ID: {doc.id}\n"
+            f"Title: {doc.title}\n"
+            f"Slug: {doc.slug}\n"
+            f"Source: {file_path}\n"
+            f"TOC: Added successfully"
+        )
+    except (FileNotFoundError, ValueError) as e:
+        return f"✗ File error: {e}"
+    except YuqueAPIError as e:
+        return f"✗ Error: {e.message}"
+
+
+@mcp.tool(
+    name="yuque_update_document_from_file",
+    annotations=ToolAnnotations(
+        readOnlyHint=False,
+        destructiveHint=False,
+        idempotentHint=True,
+        openWorldHint=False,
+    ),
+)
+async def yuque_update_document_from_file(
+    repo_id: str,
+    doc_id: str,
+    file_path: str,
+    title: str | None = None,
+    public: int | None = None,
+) -> str:
+    """Update doc content from a local .md file. Reads file content from file_path to avoid passing large body text. Title auto-extracted from first '# heading' if not provided."""
+    try:
+        content, extracted_title = _read_markdown_file(file_path)
+
+        # Use extracted title only if no explicit title given
+        effective_title = title if title is not None else extracted_title
+
+        client = get_client()
+        data = DocumentUpdate(
+            title=effective_title,
+            body=content,
+            format="markdown",
+            public=public,
+        )
+        doc = await client.update_document(repo_id, doc_id, data)
+        updated = doc.updated_at.isoformat() if doc.updated_at else "N/A"
+        return (
+            f"✓ Document updated from file!\n\n"
+            f"ID: {doc.id}\n"
+            f"Title: {doc.title}\n"
+            f"Source: {file_path}\n"
+            f"Updated at: {updated}"
+        )
+    except (FileNotFoundError, ValueError) as e:
+        return f"✗ File error: {e}"
+    except YuqueAPIError as e:
+        return f"✗ Error: {e.message}"
+
+
 # =============================================================================
 # TOC Tools (1 tool)
 # =============================================================================
 
 
-@mcp.tool()
-async def update_toc(
+@mcp.tool(
+    name="yuque_update_toc",
+    annotations=ToolAnnotations(
+        readOnlyHint=False,
+        destructiveHint=True,
+        idempotentHint=False,
+        openWorldHint=True,
+    ),
+)
+async def yuque_update_toc(
     repo_id: str,
     action: str,
     action_mode: str,
@@ -399,8 +611,16 @@ async def update_toc(
 # =============================================================================
 
 
-@mcp.tool()
-async def search_and_read(
+@mcp.tool(
+    name="yuque_search_and_read",
+    annotations=ToolAnnotations(
+        readOnlyHint=True,
+        destructiveHint=False,
+        idempotentHint=True,
+        openWorldHint=True,
+    ),
+)
+async def yuque_search_and_read(
     query: str,
     repo_id: str,
     read_first: bool = True,
