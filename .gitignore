@@ -44,3 +44,6 @@ htmlcov/
 # OS
 .DS_Store
 Thumbs.db
+
+# Machine-local assistant permissions and paths
+.claude/settings.local.json
